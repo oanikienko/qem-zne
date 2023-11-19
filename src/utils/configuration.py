@@ -20,14 +20,17 @@ def load_config(filename):
     parser.read(filename)
 
     for section in parser.sections():
+        config[section] = dict()
         for key in parser[section]:
-            config[key] = parser[section][key]
+            config[section][key] = parser[section][key]
     
     return config
 
 def print_config(config):
-    for key in config:
-        print("\t{0} = {1}".format(key, config[key]))
+    for section in config:
+        print("    [{0}]".format(section))
+        for key in config[section]:
+            print("         {0} = {1}".format(key, config[section][key]))
 
 
 ## == Tests == ##
@@ -35,7 +38,7 @@ def print_config(config):
 if __name__ == "__main__":
 
     print(">> Defining the .ini file to use...")
-    filename = "../config.ini"
+    filename = "../credentials.ini"
 
     print(">> Loading the configuration...")
     config = load_config(filename)
