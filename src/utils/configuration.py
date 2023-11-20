@@ -9,6 +9,7 @@ This module provides the following functions:
 
 ## == Libraries == ##
 import configparser
+from pathlib import Path
 
 ## == Functions == ##
 def load_config(filename):
@@ -39,9 +40,13 @@ if __name__ == "__main__":
 
     print(">> Defining the .ini file to use...")
     filename = "../credentials.ini"
+    path = Path(filename)
 
-    print(">> Loading the configuration...")
-    config = load_config(filename)
+    if (path.is_file()):
+        print(">> Loading the configuration...")
+        config = load_config(filename)
 
-    print(">> Loaded configuration:")
-    print_config(config)
+        print(">> Loaded configuration:")
+        print_config(config)
+    else:
+        print(">> Error: file not found.")
