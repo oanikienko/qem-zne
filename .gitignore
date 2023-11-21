@@ -7,4 +7,5 @@ share/
 pyvenv.cfg
 *.swp
 *.ini
+*.pyc
 !src/parameters/*.ini
