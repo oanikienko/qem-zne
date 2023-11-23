@@ -4,7 +4,11 @@
 
 # == Libraries == #
 
-
+import configuration
+from pathlib import Path
+from qiskit.providers.ibmq import IBMQ
+from qiskit.providers.fake_provider import *
+from qiskit_ibm_runtime import QiskitRuntimeService, Options, Session
 
 # == Functions == #
 
@@ -37,3 +41,18 @@ def get_gate_error_rates(provider_backend, gate='cx'):
         gate_error_rates[key] = fake_backend.target[gate][key].error
 
     return gate_error_rates
+
+
+## == Tests == ##
+
+if __name__ == "__main__":
+
+    print(">> Defining the .ini file to use...")
+    filename = "../credentials.ini"
+
+
+    config = configuration.load_config(filename)
+
+    print(">> Connecting to IBM Cloud...")
+    service = QiskitRuntimeService(channel=config["ibmq.cloud"]["channel"], token=config["ibmq.cloud"]["API_key"], instance=config["ibmq.cloud"]["instance"])
+

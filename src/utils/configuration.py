@@ -9,20 +9,27 @@ This module provides the following functions:
 
 ## == Libraries == ##
 import configparser
+from pathlib import Path
 
 ## == Functions == ##
+
+def is_empty(config):
+    return config == dict()
+
 def load_config(filename):
 
     config = dict()
 
-    parser = configparser.ConfigParser()
+    path = Path(filename)
 
-    parser.read(filename)
+    if (path.is_file()):
+        parser = configparser.ConfigParser()
+        parser.read(filename)
 
-    for section in parser.sections():
-        config[section] = dict()
-        for key in parser[section]:
-            config[section][key] = parser[section][key]
+        for section in parser.sections():
+            config[section] = dict()
+            for key in parser[section]:
+                config[section][key] = parser[section][key]
     
     return config
 
@@ -43,5 +50,8 @@ if __name__ == "__main__":
     print(">> Loading the configuration...")
     config = load_config(filename)
 
-    print(">> Loaded configuration:")
-    print_config(config)
+    if not is_empty(config):
+        print(">> Loaded configuration:")
+        print_config(config)
+    else:
+        print(">> Error: file not found.")
