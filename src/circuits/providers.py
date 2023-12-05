@@ -1,4 +1,4 @@
-# Module: providers
+# Module: providers and backends
 # Author: oanikienko
 # Date: 19/11/2023
 
@@ -8,73 +8,83 @@
 from pathlib import Path
 from circuits import initial_circuits as init
 from qiskit_ibm_runtime import QiskitRuntimeService, Options, Session
-from qiskit.providers.fake_provider import FakeManilaV2, FakeNairobiV2
+from qiskit.providers.fake_provider import FakeProvider, FakeProviderForBackendV2, FakeManilaV2, FakeNairobiV2
 import pprint
 
 # == Functions == #
 
-def get_backend_info(provider_backend):
-    ## TODO à mettre à jour (noms de variables, etc.) lors du choix des providers
+def get_backend_info(backend):
 
     backend_info = {
-        'name': provider_backend.name,
-        'version': provider_backend.backend_version,
-        'online_date': provider_backend.online_date,
-        'syst_time_resolution_input_signals': provider_backend.dt,
-        'syst_time_resolution_output_signals': provider_backend.dtm,
-        'max_circuits_per_job': provider_backend.max_circuits,
-        'num_qubits': provider_backend.num_qubits,
-        'coupling_map': provider_backend.coupling_map,
-        'operation_names': provider_backend.operation_names,
-        'instruction_durations': provider_backend.instruction_durations,
-        'instruction_schedule_map': provider_backend.instruction_schedule_map,
-        'target': provider_backend.target
+        'name': backend.name,
+        'version': backend.backend_version,
+        'online_date': backend.online_date,
+        'syst_time_resolution_input_signals': backend.dt,
+        'syst_time_resolution_output_signals': backend.dtm,
+        'max_circuits_per_job': backend.max_circuits,
+        'num_qubits': backend.num_qubits,
+        'coupling_map': backend.coupling_map,
+        'operation_names': backend.operation_names,
+        'instruction_durations': backend.instruction_durations,
+        'instruction_schedule_map': backend.instruction_schedule_map,
+        'target': backend.target
     }
 
     return backend_info
 
-def print_backend_info(provider_info):
+def print_backend_info(backend_info):
 
-    print("Name: ", provider_info['name'])
-    print("Version: ", provider_info['version'])
-    print("Online date: ", provider_info['online_date'])
-    print("Max circuits per job: ", provider_info['max_circuits_per_job'])
-    print("Number of qubits: ", provider_info['num_qubits'])
+    print("Name: ", backend_info['name'])
+    print("Version: ", backend_info['version'])
+    print("Online date: ", backend_info['online_date'])
+    print("Max circuits per job: ", backend_info['max_circuits_per_job'])
+    print("Number of qubits: ", backend_info['num_qubits'])
 
     print("System time resolution:")
-    print("\tInput signals: ", provider_info['syst_time_resolution_input_signals'])
-    print("\tOutput signals: ", provider_info['syst_time_resolution_output_signals'])
+    print("\tInput signals: ", backend_info['syst_time_resolution_input_signals'])
+    print("\tOutput signals: ", backend_info['syst_time_resolution_output_signals'])
 
     print("Coupling map:")
-    provider_info['coupling_map'].draw()
+    backend_info['coupling_map'].draw()
 
-    print("Operations names: ", provider_info['operation_names'])
+    print("Operations names: ", backend_info['operation_names'])
 
     print("Target:")
-    for gate in provider_info['target'].keys():
+    for gate in backend_info['target'].keys():
         print("\t", gate)
-        for qbits in provider_info['target'][gate].keys():
-            if provider_info['target'][gate][qbits] != None and provider_info['target'][gate][qbits] != None:
-                print("\t\tQubit(s) {0}: duration={1}, error={2}".format(qbits, provider_info['target'][gate][qbits].duration, provider_info['target'][gate][qbits].error))
+        for qbits in backend_info['target'][gate].keys():
+            if backend_info['target'][gate][qbits] != None and backend_info['target'][gate][qbits] != None:
+                print("\t\tQubit(s) {0}: duration={1}, error={2}".format(qbits, backend_info['target'][gate][qbits].duration, backend_info['target'][gate][qbits].error))
             else:
                 print("\t\tQubit(s) {0}: duration=None, error=None".format(qbits))
 
-        # print("\t\t", provider_info['target'][gate])
-        # print("{0}: {1}".format(provider_info['target'][target_key], provider_info['target'][target_key]))
+        # print("\t\t", backend_info['target'][gate])
+        # print("{0}: {1}".format(backend_info['target'][target_key], backend_info['target'][target_key]))
 
 
+def get_operations_with_error_rates(backend):
 
-def get_gate_errors(provider_backend):
+    operations = []
+
+    for gate in backend.target.keys():
+        for qbits in backend.target[gate].keys():
+            if backend.target[gate][qbits] != None and backend.target[gate][qbits] != None:
+                operations.append((gate, qbits))
+
+    return operations
+
+
+def get_gate_errors(backend):
 
     gate_errors = dict()
 
-    for gate in provider_backend.target.keys():
+    for gate in backend.target.keys():
         # print("\t", gate)
         gate_errors[gate] = dict()
-        for qbits in provider_backend.target[gate].keys():
-            if provider_backend.target[gate][qbits] != None and provider_backend.target[gate][qbits] != None:
-                # print("\t\tQubit(s) {0}: duration={1}, error={2}".format(qbits, provider_backend.target[gate][qbits].duration, provider_backend.target[gate][qbits].error))
-                gate_errors[gate][qbits] = provider_backend.target[gate][qbits].error
+        for qbits in backend.target[gate].keys():
+            if backend.target[gate][qbits] != None and backend.target[gate][qbits] != None:
+                # print("\t\tQubit(s) {0}: duration={1}, error={2}".format(qbits, backend.target[gate][qbits].duration, backend.target[gate][qbits].error))
+                gate_errors[gate][qbits] = backend.target[gate][qbits].error
             else:
                 # print("\t\tQubit(s) {0}: duration=None, error=None".format(qbits))
                 gate_errors[gate][qbits] = None
@@ -82,7 +92,7 @@ def get_gate_errors(provider_backend):
     return gate_errors
 
 
-def calculate_error_rate(circuit, provider_backend, noise_factor):
+def calculate_error_rate(circuit, backend, noise_factor):
 
     # Get gates in the circuit
     instructions = dict()
@@ -104,8 +114,8 @@ def calculate_error_rate(circuit, provider_backend, noise_factor):
         l.append(indexes)
         instructions[gate] = l
         
-    # Get the error rate for each gate for the provider_backend
-    gate_errors = get_gate_errors(provider_backend)
+    # Get the error rate for each gate for the backend
+    gate_errors = get_gate_errors(backend)
 
 
     # Compute the error rate of the circuit
@@ -115,7 +125,22 @@ def calculate_error_rate(circuit, provider_backend, noise_factor):
             circuit_error_rate += noise_factor*gate_errors[gate][qubits]
 
     return circuit_error_rate
-    
+
+def search_backend(provider, searched_backend_name):
+
+    searched_backend = None
+
+    for backend in provider.backends():
+        if backend.name == searched_backend_name:
+            searched_backend = backend
+    return searched_backend
+
+
+def get_backends(provider, backends_names):
+
+    # Returns a list of backends for the given provider if the backend is found among the provided backends
+    return [search_backend(provider, name) for name in backends_names if search_backend(provider, name) != None]
+
 
 ## == Tests == ##
 
@@ -129,7 +154,7 @@ if __name__ == "__main__":
     # print(">> Connecting to IBM Cloud...")
     # service = QiskitRuntimeService(channel=config["ibmq.cloud"]["channel"], token=config["ibmq.cloud"]["API_key"], instance=config["ibmq.cloud"]["instance"])
 
-    print(">> Information about different providers")
+    print(">> Information about different backends")
 
     fake_Manila = FakeManilaV2()
 
@@ -159,3 +184,15 @@ if __name__ == "__main__":
 
     initial_fault_rate = calculate_error_rate(initial_circuit, fake_Nairobi, noise_factor)
     print("FakeNairobi - Circuit fault rate: ", initial_fault_rate)
+
+
+    print(">> Search of backends provided by a provider (FakeProviderV2 only)")
+
+    fake_provider_V2 = FakeProviderForBackendV2()
+
+    found_backend = search_backend(fake_provider_V2, "fake_manila")
+    print(found_backend)
+
+    backends_names = ["fake_manila", "fake_almaden", "fake_armonk", "fake_athens", "fake_auckland", "fake_belem"]
+    backends = get_backends(fake_provider_V2, backends_names)
+    print(backends)
