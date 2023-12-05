@@ -16,15 +16,23 @@ from pathlib import Path
 def is_empty(config):
     return config == dict()
 
+def loaded_configurations(*configs):
+    
+    for config in enumerate(configs):
+        if is_empty(config):
+            return False
+
+    return True
+
 def load_config(filename):
 
     config = dict()
 
-    path = Path(filename)
+    path = Path(__file__).parent / filename
 
     if (path.is_file()):
         parser = configparser.ConfigParser()
-        parser.read(filename)
+        parser.read(path)
 
         for section in parser.sections():
             config[section] = dict()
