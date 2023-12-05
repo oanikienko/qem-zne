@@ -11,6 +11,7 @@ This module contains the following functions:
 
 import numpy as np
 import csv
+from pathlib import Path
 
 ## == Functions == ##
 
@@ -36,7 +37,10 @@ def load_data(filename, separator=';'):
     fields = []
     data = []
     row = []
-    with open(filename, 'r') as csvfile:
+
+    path = Path(__file__).parent / filename
+
+    with open(path, 'r') as csvfile:
         csvreader = csv.reader(csvfile, delimiter=separator)
         fields = next(csvreader)
         for line in csvreader:
@@ -64,10 +68,12 @@ def store_data(fields, data, filename, separator=';'):
         Separator between values in the CSV file. By default: ';'.
     """
 
+    path = Path(__file__).parent / filename
+
     for i in range(len(data)):
         data[i] = [str(x) for x in data[i]]
 
-    with open(filename, 'w') as csvfile:
+    with open(path, 'w') as csvfile:
         csvwriter = csv.writer(csvfile, delimiter=separator)
         csvwriter.writerow(fields)
         for i in range(len(data)):
