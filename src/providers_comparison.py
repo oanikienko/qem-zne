@@ -30,8 +30,15 @@ filename = "../data/fake_providers_V2_csv"
 headers = ["name", "version", "online_date", "num_qubits", "possible_operations", "operations_with_error_rates"]
 data = []
 
-for fake_backend in fake_backends:
-    info = providers.get_backend_info(fake_backend)
+nb_qubits = 4
+circuit = init.build_initial_circuit(nb_qubits, init.U_4qubits)
+
+selected_backends = providers.select_backends_for_circuit(fake_provider, circuit)
+
+print(f"Backends on which the circuit U_4qubits can be run: {selected_backends}")
+
+# for fake_backend in fake_backends:
+#     info = providers.get_backend_info(fake_backend)
     # print(providers.get_operations_with_error_rates(fake_backend))
     # row = [info['name'], info ['version'], info['online_date'], info['num_qubits'], info['operation_names'], providers.get_operations_with_error_rates(fake_backend)]
     # data.append(row)
@@ -39,34 +46,33 @@ for fake_backend in fake_backends:
 # io.store_data(headers, data, filename, separator=';')
 
 
-#TODO real providers (attention au temps d'exécution !)
-print(">> Comparison between backends from IBM Cloud")
-working_directory = os.getcwd()
-credentials_configfile = "./credentials.ini"
-credentials = config.load_config(working_directory, credentials_configfile)
-service = QiskitRuntimeService(
-                                channel=credentials["ibm.cloud"]["channel"],
-                                token=credentials["ibm.cloud"]["api_key"],
-                                instance=credentials["ibm.cloud"]["instance"]
-                              )
+# print(">> Comparison between backends from IBM Cloud")
+# working_directory = os.getcwd()
+# credentials_configfile = "./credentials.ini"
+# credentials = config.load_config(working_directory, credentials_configfile)
+# service = QiskitRuntimeService(
+#                                 channel=credentials["ibm.cloud"]["channel"],
+#                                 token=credentials["ibm.cloud"]["api_key"],
+#                                 instance=credentials["ibm.cloud"]["instance"]
+#                               )
 
-print(service.backends())
-
+# print(service.backends())
 
 
-print(">> Comparison between backends from IBM Quantum")
 
-service = QiskitRuntimeService(
-                                channel=credentials["ibm.quantum"]["channel"],
-                                token=credentials["ibm.quantum"]["api_token"],
-                                instance=credentials["ibm.quantum"]["instance"]
-                              )
+# print(">> Comparison between backends from IBM Quantum")
 
-# print(service.instances())
-print(service.backends())
+# service = QiskitRuntimeService(
+#                                 channel=credentials["ibm.quantum"]["channel"],
+#                                 token=credentials["ibm.quantum"]["api_token"],
+#                                 instance=credentials["ibm.quantum"]["instance"]
+#                               )
+
+# # print(service.instances())
+# print(service.backends())
 
 
-print(providers.search_backend(service, 'ibm_brisbane'))
+# print(providers.search_backend(service, 'ibm_brisbane'))
 
-print(providers.get_backends(service, ['ibm_brisbane', 'ibm_kyoto']))
+# print(providers.get_backends(service, ['ibm_brisbane', 'ibm_kyoto']))
 
