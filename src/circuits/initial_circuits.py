@@ -13,8 +13,6 @@ import pprint
 
 def U_4qubits(circuit, q_register):
     ## TODO Adapt it according to the providers chosen with the respect of their characteristics
-    # For local folding => needs a parser to implement all kinds of gates (x, y, z, s, cx, cz, cy, h, ..., with the correct number of qubits (1, 2, 3...))
-
     # circuit.s(q_register[0]) # TODO test only
     circuit.cx(q_register[0], q_register[1])
     circuit.cx(q_register[1], q_register[2])
@@ -29,7 +27,13 @@ def U_4qubits(circuit, q_register):
 # def U_5qubits(circuit, q_register):
     ## TODO Adapt it according to the providers chosen with the respect of their characteristics
 
+def get_existing_circuits():
 
+    circuit_functions = {
+                            "U_4qubits": U_4qubits
+                        }
+
+    return circuit_functions
 
 
 def build_initial_circuit(nb_qubits, chosen_U):
