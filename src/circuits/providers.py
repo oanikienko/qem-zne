@@ -136,6 +136,28 @@ def get_backends(provider, backends_names):
     # Returns a list of backends for the given provider if the backend is found among the provided backends
     return [search_backend(provider, name) for name in backends_names if search_backend(provider, name) != None]
 
+def select_backends_with_gates(provider, chosen_gates):
+    
+    selected_backends = []
+    backends_gates = dict()
+
+    # 1) Getting the backends for the provider
+    backends = provider.backends()
+
+    # 2) Getting the gates with known error rates for all backends
+    for backend in backends:
+        backends_gates[backend.name] = get_gate_errors(backend)
+
+    # 3) Selecting the backends for which the gates with known error rates are the ones in the chosen gates
+    for backend_name in backends_gates.keys():
+        gates = backends_gates[backend_name]
+        for gate in gates.keys():
+            if gate in chosen_gates.keys():
+                if (all(qubits in gates[gate].keys() for qubits in chosen_gates[gate])):
+                    selected_backends.append(backend_name)
+
+    return selected_backends
+
 
 def select_backends_for_circuit(provider, circuit):
 
