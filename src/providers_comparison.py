@@ -26,24 +26,29 @@ fake_provider = FakeProviderForBackendV2()
 
 fake_backends = fake_provider.backends()
 
-filename = "../data/fake_providers_V2_csv"
-headers = ["name", "version", "online_date", "num_qubits", "possible_operations", "operations_with_error_rates"]
-data = []
-
 nb_qubits = 4
 circuit = init.build_initial_circuit(nb_qubits, init.U_4qubits)
+print(circuit)
+# image = circuit.draw('latex')
+# image.save("./initial_circuit_4qubits.png")
+selected_backends_for_circuit_4qubits = providers.select_backends_for_circuit(fake_provider, circuit)
+print(f"Backends on which the circuit U_4qubits can be run: {selected_backends_for_circuit_4qubits}")
 
-selected_backends = providers.select_backends_for_circuit(fake_provider, circuit)
+gates = {'cx': [(0, 1), (1, 2), (1, 3), (3, 1), (2, 1), (1, 0), (3,4), (4,3)]}
+selected_backends_by_gates = providers.select_backends_with_gates(fake_provider, gates)
+print(f"Backends on which the gates can be run: {selected_backends_by_gates}")
 
-print(f"Backends on which the circuit U_4qubits can be run: {selected_backends}")
+nb_qubits = 5
+circuit = init.build_initial_circuit(nb_qubits, init.U_5qubits)
+print(circuit)
+# image = circuit.draw('latex')
+# image.save("./initial_circuit_5qubits.png")
+selected_backends_for_circuit_5qubits = providers.select_backends_for_circuit(fake_provider, circuit)
+print(f"Backends on which the circuit U_5qubits can be run: {selected_backends_for_circuit_5qubits}")
 
-# for fake_backend in fake_backends:
-#     info = providers.get_backend_info(fake_backend)
-    # print(providers.get_operations_with_error_rates(fake_backend))
-    # row = [info['name'], info ['version'], info['online_date'], info['num_qubits'], info['operation_names'], providers.get_operations_with_error_rates(fake_backend)]
-    # data.append(row)
-
-# io.store_data(headers, data, filename, separator=';')
+# print(selected_backends_for_circuit == selected_backends_by_gates)
+common_backends = list(set(selected_backends_for_circuit_4qubits) & set(selected_backends_for_circuit_5qubits))
+print(f"Common backends between the two circuits: {common_backends}")
 
 
 # print(">> Comparison between backends from IBM Cloud")
