@@ -187,7 +187,7 @@ def save_experiment_data(provider_name, backend, experiment, fault_rates, ideal_
 
     experiment_results["extrapolation"] = dict()
     experiment_results["extrapolation"]["type"] = experiment["extrapolation"]["type"]
-    experiment_results["extrapolation"]["parameters"] = experiment["extrapolation"]["parameters"]
+    experiment_results["extrapolation"]["parameters"] = dict(experiment["extrapolation"]["parameters"])
     experiment_results["extrapolation"]["extrapolated_expectation_value"] = extrapolated_expectation_value
     experiment_results["extrapolation"]["extrapolated_variance"] = extrapolated_variance
 
@@ -260,9 +260,9 @@ else:
     # TODO modifier les valeurs pour récupérer celles du fichier de configuration
     common_parameters, providers_parameters, experiments_parameters = set_up_parameters(ibm_cloud_service, ibm_quantum_service, experiments_configuration)
 
-    pp.pprint(common_parameters)
-    pp.pprint(providers_parameters)
-    pp.pprint(experiments_parameters)
+    # pp.pprint(common_parameters)
+    # pp.pprint(providers_parameters)
+    # pp.pprint(experiments_parameters)
 
     # TODO : considérer que ces variables doivent être fixées pour l'ensemble des expériences ou seulement pour certaines ?
     estimator_optimization_level = 0
@@ -301,17 +301,19 @@ else:
     initialize_experiments_results(results)
 
     for provider_name in providers_parameters.keys():
-        # print(provider_name)
+        print(f"\t>> Currrent provider: {provider_name}")
 
         for backend in providers_parameters[provider_name]["backends_objects"]:
-            # print(backend.name)
+            print(f"\t\t>> Currrent backend: {backend.name}")
             
             for experiment in experiments_parameters:
 
-                print(">>>> Current experiment")
-                pp.pprint(experiment)
+                print("\t\t\t>> Current experiment:")
+                print(f"\t\t\t\t nb_shots: {experiment['nb_shots']}")
+                print(f"\t\t\t\t boost_method: {experiment['boost_method'].__name__}")
+                print(f"\t\t\t\t extrapolation: {experiment['extrapolation']['type']}")
 
-                print(">>>> Initializing the variables for the current experiment...")
+                print("\t\t\t>> Initializing the variables for the current experiment...")
                 folded_circuits = []
                 fault_rates = dict()
 
@@ -319,16 +321,16 @@ else:
                 noisy_estimations = dict()
 
 
-                print(">>>> Creating the circuits for the current experiment...")
+                print("\t\t\t>> Creating the circuits for the current experiment...")
                 for noise_factor in common_parameters["noise_factors"][1:]:
                     folded_circuits.append(experiment["boost_method"](initial_circuit, noise_factor))
 
-                # print(">>>> Displaying circuits with boosted noise...")
+                # print("\t\t\t>> Displaying circuits with boosted noise...")
                 # for i in range(len(folded_circuits)):
                 #     print(folded_circuits[i])
 
 
-                print(">>>> Computing the fault rate for each circuit...")
+                print("\t\t\t>> Computing the fault rate for each circuit...")
                 fault_rates[common_parameters["noise_factors"][0]] = providers.calculate_error_rate(initial_circuit, backend, common_parameters["noise_factors"][0])
 
                 for i in range(len(folded_circuits)):
@@ -338,7 +340,7 @@ else:
 
 
                 #### == Estimation of the expectation value on the ideal simulator, without QEM == ### 
-                print(">>>> Setting up estimators...")
+                print("\t\t\t>> Setting up estimators...")
                 ideal_estimator = Estimator()
                 ideal_estimator.set_options(shots=experiment["nb_shots"])
 
@@ -353,15 +355,15 @@ else:
                 }
 
 
-                print(">>>> Running experiments on ideal simulator...")
+                print("\t\t\t>> Running experiments on ideal simulator...")
 
-                print(f">>>>>> Initial circuit - noise_factor = {common_parameters['noise_factors'][0]}")
+                print(f"\t\t\t\t>> Initial circuit - noise_factor = {common_parameters['noise_factors'][0]}")
                 job = ideal_estimator.run(initial_circuit, common_parameters["observable"])
                 result = job.result()
                 ideal_estimations[common_parameters["noise_factors"][0]] = [float(result.values[0]), float(result.metadata[0]['variance'])]
 
                 for i in range(len(folded_circuits)):
-                    print(f">>>>>> Folded circuit - noise_factor = {common_parameters['noise_factors'][i+1]}")
+                    print(f"\t\t\t\t>> Folded circuit - noise_factor = {common_parameters['noise_factors'][i+1]}")
                     job = ideal_estimator.run(folded_circuits[i], common_parameters["observable"])
                     result = job.result()
                     ideal_estimations[common_parameters["noise_factors"][i+1]] = [float(result.values[0]), float(result.metadata[0]['variance'])]
@@ -370,20 +372,20 @@ else:
 
 
                 #### == Performing experiments on the noisy simulator == ### 
-                print(">>>> Running experiments on noisy simulator...")
+                print("\t\t\t>> Running experiments on noisy simulator...")
 
                 service = select_service(provider_name, ibm_cloud_service, ibm_quantum_service)
 
                 with Session(service=service, backend=noisy_simulator) as session:
                     noisy_estimator = IBMQEstimator(session = session, options = noisy_options)
 
-                    print(f">>>>>> Initial circuit - noise_factor = {common_parameters['noise_factors'][0]}")
+                    print(f"\t\t\t\t>> Initial circuit - noise_factor = {common_parameters['noise_factors'][0]}")
                     job = noisy_estimator.run(circuits = initial_circuit, observables = common_parameters["observable"])
                     result = job.result()
                     noisy_estimations[common_parameters["noise_factors"][0]] = [float(result.values[0]), float(result.metadata[0]['variance'])]
                     
                     for i in range(len(folded_circuits)):
-                        print(f">>>>>> Folded circuit - noise_factor = {common_parameters['noise_factors'][i+1]}")
+                        print(f"\t\t\t\t>> Folded circuit - noise_factor = {common_parameters['noise_factors'][i+1]}")
                         job = noisy_estimator.run(folded_circuits[i], common_parameters["observable"])
                         result = job.result()
                         noisy_estimations[common_parameters["noise_factors"][i+1]] = [float(result.values[0]), float(result.metadata[0]['variance'])]
@@ -392,10 +394,10 @@ else:
 
 
                 #### == Performing extrapolation == ###
-                print(">>>> Extrapolating by fitting a function to the data points...")
+                print("\t\t\t>> Extrapolating by fitting a function to the data points...")
                 # TODO define a function to apply extrapolation, to simplify the code
-                pp.pprint(ideal_estimations)
-                pp.pprint(noisy_estimations)
+                # pp.pprint(ideal_estimations)
+                # pp.pprint(noisy_estimations)
 
                 ideal_expectation_values = np.array(list(ideal_estimations.values()))[:,0]
                 ideal_std_deviations = np.sqrt(np.array(list(ideal_estimations.values()))[:,1])
@@ -408,15 +410,15 @@ else:
                 if experiment["extrapolation"]["type"] == "polynomial":
                     polynomial_degree = experiment["extrapolation"]["parameters"]["degree"]
                     optimal_coefs, covariance_matrix = experiment["extrapolation"]["function"](polynomial_degree, common_parameters["noise_factors"], noisy_expectation_values, noisy_std_deviations)
-                    print(optimal_coefs)
-                    print(covariance_matrix)
+                    # print(optimal_coefs)
+                    # print(covariance_matrix)
                     extrapolated_expectation_value = float(optimal_coefs[0])
                     extrapolated_variance = float(np.diag(covariance_matrix)[0])
                     extrapolated_std_deviation = float(np.sqrt(extrapolated_variance))
-                    print(extrapolated_expectation_value)
-                    print(extrapolated_variance)
-                    print(extrapolated_std_deviation)
-                    print(f"mitigated_value = {extrapolated_expectation_value} +/- {extrapolated_std_deviation}")
+                    # print(extrapolated_expectation_value)
+                    # print(extrapolated_variance)
+                    # print(extrapolated_std_deviation)
+                    # print(f"mitigated_value = {extrapolated_expectation_value} +/- {extrapolated_std_deviation}")
 
                 #TODO richardson
                 # elif experiment["extrapolation"]["type"] == "richardson":
