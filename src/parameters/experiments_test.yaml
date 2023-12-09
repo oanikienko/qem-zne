@@ -16,8 +16,7 @@ providers:
   - name: fake_provider
     backends: 
       - fake_nairobi
-      # - fake_manila
-      # - fake_belem
+      - fake_belem
   # - name: ibm_quantum_provider # test pour récupérer les backends des processeurs réels
   #   backends:
   #     - ibm_brisbane
