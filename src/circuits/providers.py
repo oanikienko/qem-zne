@@ -133,6 +133,7 @@ def search_backend(provider, searched_backend_name):
     for backend in provider.backends():
         if backend.name == searched_backend_name:
             searched_backend = backend
+
     return searched_backend
 
 
