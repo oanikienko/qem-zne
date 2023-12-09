@@ -8,4 +8,5 @@ pyvenv.cfg
 *.swp
 *.ini
 *.pyc
+*.vim
 !src/parameters/*.ini
