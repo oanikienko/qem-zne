@@ -12,8 +12,6 @@ import pprint
 ## == Functions == ##
 
 def U_4qubits(circuit, q_register):
-    ## TODO Adapt it according to the providers chosen with the respect of their characteristics
-    # circuit.s(q_register[0]) # TODO test only
     circuit.cx(q_register[0], q_register[1])
     circuit.cx(q_register[1], q_register[2])
     circuit.cx(q_register[1], q_register[3])
@@ -23,14 +21,24 @@ def U_4qubits(circuit, q_register):
     circuit.cx(q_register[1], q_register[0])
 
 
+def U_5qubits(circuit, q_register):
 
-# def U_5qubits(circuit, q_register):
-    ## TODO Adapt it according to the providers chosen with the respect of their characteristics
+    circuit.cx(q_register[0], q_register[1])
+    circuit.cx(q_register[1], q_register[2])
+    circuit.cx(q_register[1], q_register[3])
+    circuit.cx(q_register[3], q_register[4])
+
+    circuit.cx(q_register[4], q_register[3])
+    circuit.cx(q_register[3], q_register[1])
+    circuit.cx(q_register[2], q_register[1])
+    circuit.cx(q_register[1], q_register[0])
+
 
 def get_existing_circuits():
 
     circuit_functions = {
-                            "U_4qubits": U_4qubits
+                            "U_4qubits": U_4qubits,
+                            "U_5qubits": U_5qubits
                         }
 
     return circuit_functions
