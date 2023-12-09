@@ -97,12 +97,6 @@ def calculate_error_rate(circuit, backend, noise_factor):
     # Get gates in the circuit
     instructions = dict()
     for circuit_instruction in circuit.data:
-        # print("Operation: ", circuit_instruction.operation)
-        # print("Qubits: ", circuit_instruction.qubits)
-        # print("\tFind qubit: ", [circuit.find_bit(qubit) for qubit in circuit_instruction.qubits])
-        # print("\tIndex: ", tuple([circuit.find_bit(qubit).index for qubit in circuit_instruction.qubits]))
-        # print("\tRegister: ", [circuit.find_bit(qubit).registers for qubit in circuit_instruction.qubits])
-        # print("Cbits: ", circuit_instruction.clbits)
 
         gate = circuit_instruction.operation.name
         indexes = tuple([circuit.find_bit(qubit).index for qubit in circuit_instruction.qubits])
@@ -142,6 +136,47 @@ def get_backends(provider, backends_names):
     # Returns a list of backends for the given provider if the backend is found among the provided backends
     return [search_backend(provider, name) for name in backends_names if search_backend(provider, name) != None]
 
+
+def select_backends_for_circuit(provider, circuit):
+
+    selected_backends = []
+    circuit_gates = dict()
+    backends_gates = dict()
+
+    # 1) Getting the backends for the provider
+    backends = provider.backends()
+    
+    # 2) Getting the existing gates in the circuit
+    for circuit_instruction in circuit.data:
+        # print("Operation: ", circuit_instruction.operation)
+        # print("Qubits: ", circuit_instruction.qubits)
+        # print("\tFind qubit: ", [circuit.find_bit(qubit) for qubit in circuit_instruction.qubits])
+        # print("\tIndex: ", tuple([circuit.find_bit(qubit).index for qubit in circuit_instruction.qubits]))
+        # print("\tRegister: ", [circuit.find_bit(qubit).registers for qubit in circuit_instruction.qubits])
+        # print("Cbits: ", circuit_instruction.clbits)
+        gate = circuit_instruction.operation.name
+        indexes = tuple([circuit.find_bit(qubit).index for qubit in circuit_instruction.qubits])
+
+        if not gate in circuit_gates:
+            circuit_gates[gate] = []
+
+        l = circuit_gates[gate]
+        l.append(indexes)
+        circuit_gates[gate] = l
+
+    # 3) Getting the gates with known error rates for all backends
+    for backend in backends:
+        backends_gates[backend.name] = get_gate_errors(backend)
+
+    # 4) Selecting the backends for which the gates with known error rates are the ones in the circuit
+    for backend_name in backends_gates.keys():
+        gates = backends_gates[backend_name]
+        for gate in gates.keys():
+            if gate in circuit_gates.keys():
+                if (all(qubits in gates[gate].keys() for qubits in circuit_gates[gate])):
+                    selected_backends.append(backend_name)
+
+    return selected_backends
 
 ## == Tests == ##
 
