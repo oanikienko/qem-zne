@@ -12,33 +12,41 @@ experiments_results:
     fault_rate: 0.04352809002022939
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.828
-    noisy_variance: 0.31441600000000003
+    noisy_expectation_value: 0.772
+    noisy_variance: 0.40401599999999993
   - noise_factor: 3
     fault_rate: 0.39175281018206454
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.746
-    noisy_variance: 0.443484
+    noisy_expectation_value: 0.778
+    noisy_variance: 0.39471599999999996
   - noise_factor: 5
     fault_rate: 1.0882022505057352
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.676
-    noisy_variance: 0.543024
+    noisy_expectation_value: 0.702
+    noisy_variance: 0.507196
   - noise_factor: 7
     fault_rate: 2.13287641099124
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.664
-    noisy_variance: 0.5591039999999999
+    noisy_expectation_value: 0.708
+    noisy_variance: 0.49873600000000007
   extrapolation:
     type: polynomial
     parameters:
       degree: 2
       p0: null
-    extrapolated_expectation_value: 0.8870069326467751
-    extrapolated_variance: 1.033869222894612
+    optimal_coefs:
+    - 0.7893104165739625
+    - -0.009473544826529954
+    - -0.000491093411792537
+    coefs_variances:
+    - 1.2340883951642707
+    - 0.4599789990564267
+    - 0.006968594549486482
+    extrapolated_expectation_value: 0.7893104165739625
+    extrapolated_variance: 1.2340883951642707
 - provider: fake_provider
   backend: fake_nairobi
   nb_shots: 1000
@@ -48,33 +56,43 @@ experiments_results:
     fault_rate: 0.04352809002022939
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.812
-    noisy_variance: 0.34065599999999996
+    noisy_expectation_value: 0.784
+    noisy_variance: 0.3853439999999999
   - noise_factor: 3
     fault_rate: 0.39175281018206454
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.76
-    noisy_variance: 0.4224
+    noisy_expectation_value: 0.778
+    noisy_variance: 0.39471599999999996
   - noise_factor: 5
     fault_rate: 1.0882022505057347
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.642
-    noisy_variance: 0.587836
+    noisy_expectation_value: 0.728
+    noisy_variance: 0.470016
   - noise_factor: 7
     fault_rate: 2.13287641099124
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.662
-    noisy_variance: 0.5617559999999999
+    noisy_expectation_value: 0.698
+    noisy_variance: 0.512796
   extrapolation:
     type: polynomial
     parameters:
       degree: 3
       p0: null
-    extrapolated_expectation_value: 0.7494999999999998
-    extrapolated_variance: 4.718840517463109
+    optimal_coefs:
+    - 0.7505
+    - 0.049666666666666796
+    - -0.017500000000000026
+    - 0.0013333333333333348
+    coefs_variances:
+    - 4.592455660334008
+    - 6.131198975805717
+    - 0.5383886589392302
+    - 0.0037676718046916026
+    extrapolated_expectation_value: 0.7505
+    extrapolated_variance: 4.592455660334008
 - provider: fake_provider
   backend: fake_belem
   nb_shots: 1000
@@ -84,33 +102,41 @@ experiments_results:
     fault_rate: 0.08239080811833915
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.742
-    noisy_variance: 0.44943600000000006
+    noisy_expectation_value: 0.714
+    noisy_variance: 0.4902040000000001
   - noise_factor: 3
     fault_rate: 0.7415172730650523
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.698
-    noisy_variance: 0.512796
+    noisy_expectation_value: 0.712
+    noisy_variance: 0.49305600000000005
   - noise_factor: 5
     fault_rate: 2.0597702029584792
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.62
-    noisy_variance: 0.6155999999999999
+    noisy_expectation_value: 0.638
+    noisy_variance: 0.592956
   - noise_factor: 7
     fault_rate: 4.037149597798618
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.646
-    noisy_variance: 0.582684
+    noisy_expectation_value: 0.614
+    noisy_variance: 0.623004
   extrapolation:
     type: polynomial
     parameters:
       degree: 2
       p0: null
-    extrapolated_expectation_value: 0.793907212717051
-    extrapolated_variance: 1.3988872062955595
+    optimal_coefs:
+    - 0.7264934703345123
+    - -0.005322485114229987
+    - -0.001677903435666669
+    coefs_variances:
+    - 1.4932928375966699
+    - 0.5585073150437269
+    - 0.008523586374775535
+    extrapolated_expectation_value: 0.7264934703345123
+    extrapolated_variance: 1.4932928375966699
 - provider: fake_provider
   backend: fake_belem
   nb_shots: 1000
@@ -120,30 +146,40 @@ experiments_results:
     fault_rate: 0.08239080811833915
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.732
-    noisy_variance: 0.46417600000000003
+    noisy_expectation_value: 0.724
+    noisy_variance: 0.475824
   - noise_factor: 3
     fault_rate: 0.7415172730650521
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.718
-    noisy_variance: 0.484476
+    noisy_expectation_value: 0.71
+    noisy_variance: 0.4959
   - noise_factor: 5
     fault_rate: 2.0597702029584792
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.696
-    noisy_variance: 0.515584
+    noisy_expectation_value: 0.61
+    noisy_variance: 0.6279
   - noise_factor: 7
     fault_rate: 4.037149597798619
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.66
-    noisy_variance: 0.5644
+    noisy_expectation_value: 0.594
+    noisy_variance: 0.6471640000000001
   extrapolation:
     type: polynomial
     parameters:
       degree: 3
       p0: null
-    extrapolated_expectation_value: 0.737875
-    extrapolated_variance: 5.48249172501619
+    optimal_coefs:
+    - 0.6456250000000003
+    - 0.11745833333333283
+    - -0.04262499999999984
+    - 0.003541666666666653
+    coefs_variances:
+    - 5.794705926311391
+    - 7.825813078390009
+    - 0.6933714715577969
+    - 0.004877252916233304
+    extrapolated_expectation_value: 0.6456250000000003
+    extrapolated_variance: 5.794705926311391
