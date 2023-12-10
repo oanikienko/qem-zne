@@ -9,6 +9,8 @@ This module provides the following functions:
 
 ## == Libraries == ##
 import configparser
+import errno
+import os
 from pathlib import Path
 
 ## == Functions == ##
@@ -24,15 +26,16 @@ def loaded_configurations(*configs):
 
     return True
 
-def load_config(filename):
+def load_config(working_directory, filename):
 
     config = dict()
 
-    path = Path(__file__).parent / filename
+    base_path = Path(working_directory)
+    file_path = (base_path / filename).resolve()
 
-    if (path.is_file()):
+    if (file_path.exists() and file_path.is_file()):
         parser = configparser.ConfigParser()
-        parser.read(path)
+        parser.read(file_path)
 
         for section in parser.sections():
             config[section] = dict()

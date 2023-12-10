@@ -1,0 +1,77 @@
+circuit: U_4qubits
+nb_qubits: 4
+observable:
+- ZZZZ
+experiments_results:
+- provider: fake_provider
+  backend: fake_nairobi
+  nb_shots: 1000
+  boost_method: global_folding
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.04352809002022939
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.8
+    noisy_variance: 0.3599999999999999
+  - noise_factor: 3
+    fault_rate: 0.39175281018206454
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.768
+    noisy_variance: 0.410176
+  - noise_factor: 5
+    fault_rate: 1.0882022505057352
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.672
+    noisy_variance: 0.548416
+  - noise_factor: 7
+    fault_rate: 2.13287641099124
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.638
+    noisy_variance: 0.592956
+  extrapolation:
+    type: polynomial
+    parameters:
+      degree: 2
+      p0: null
+    extrapolated_expectation_value: 0.8292218714757813
+    extrapolated_variance: 1.1475934348550205
+- provider: fake_provider
+  backend: fake_nairobi
+  nb_shots: 1000
+  boost_method: local_folding
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.04352809002022939
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.792
+    noisy_variance: 0.37273599999999996
+  - noise_factor: 3
+    fault_rate: 0.39175281018206454
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.698
+    noisy_variance: 0.512796
+  - noise_factor: 5
+    fault_rate: 1.0882022505057347
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.728
+    noisy_variance: 0.470016
+  - noise_factor: 7
+    fault_rate: 2.13287641099124
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.66
+    noisy_variance: 0.5644
+  extrapolation:
+    type: polynomial
+    parameters:
+      degree: 3
+      p0: null
+    extrapolated_expectation_value: 0.9548750000000004
+    extrapolated_variance: 5.102203126842113

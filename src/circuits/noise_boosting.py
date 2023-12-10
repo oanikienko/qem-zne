@@ -10,9 +10,9 @@ from circuits import initial_circuits as init
 
 ## == Functions == ##
 
-def global_folding(initial_circuit, nb_qubits, noise_factor):
+def global_folding(initial_circuit, noise_factor):
 
-    folded_circuit = QuantumCircuit(nb_qubits)
+    folded_circuit = QuantumCircuit(initial_circuit.num_qubits)
 
     for i in range(1, noise_factor+1):
         if i % 2 != 0:
@@ -22,9 +22,9 @@ def global_folding(initial_circuit, nb_qubits, noise_factor):
 
     return folded_circuit
 
-def local_folding(initial_circuit, nb_qubits, noise_factor):
+def local_folding(initial_circuit, noise_factor):
 
-    q_register = QuantumRegister(nb_qubits, name='q')
+    q_register = QuantumRegister(initial_circuit.num_qubits, name='q')
 
     folded_circuit = QuantumCircuit(q_register)
     
@@ -43,6 +43,15 @@ def local_folding(initial_circuit, nb_qubits, noise_factor):
                 folded_circuit.append(circuit_instruction.operation, qargs=circuit_instruction.qubits, cargs=circuit_instruction.clbits)
 
     return folded_circuit 
+
+def get_existing_boosting_methods():
+
+    functions = {
+                    "global_folding": global_folding,
+                    "local_folding": local_folding
+                }
+
+    return functions
 
 ## == Tests == ##
 
