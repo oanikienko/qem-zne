@@ -47,6 +47,7 @@ from qiskit.providers.fake_provider import FakeProviderForBackendV2
 
 
 #TODO simplify this function with intermediate functions
+#TODO add the exception/errors management
 def set_up_parameters(ibm_cloud_service, ibm_quantum_service, experiments_configuration):
 
     common_parameters = dict()
@@ -101,10 +102,13 @@ def set_up_parameters(ibm_cloud_service, ibm_quantum_service, experiments_config
         experiment["nb_shots"] = experiments_configuration["experiments"][i]["nb_shots"]
 
         # Boosting method for this experiment
-        if experiments_configuration["experiments"][i]["boost_method"] == "global_folding":
-            experiment["boost_method"] = noise_boosting.global_folding
-        elif experiments_configuration["experiments"][i]["boost_method"] == "local_folding":
-            experiment["boost_method"] = noise_boosting.local_folding
+        boosting_methods = noise_boosting.get_existing_boosting_methods()
+        if not hasattr(noise_boosting, experiments_configuration["experiments"][i]["boost_method"]):
+            print("Error: the boosting method {0} does not exist.".format(experiments_configuration["experiments"][i]["boost_method"]))
+            raise KeyError
+
+        experiment["boost_method"] = boosting_methods[experiments_configuration["experiments"][i]["boost_method"]]
+
         
         # Extrapolation for this experiment
         experiment["extrapolation"] = dict()
@@ -161,7 +165,7 @@ def initialize_experiments_results(results):
     results["experiments_results"] = []
 
 
-def save_experiment_data(provider_name, backend, experiment, fault_rates, ideal_estimations, noisy_estimations, extrapolated_expectation_value, extrapolated_variance, results):
+def save_experiment_data(provider_name, backend, experiment, fault_rates, ideal_estimations, noisy_estimations, optimal_coefs, coefs_variances, results):
 
     experiment_results = dict()
 
@@ -188,8 +192,10 @@ def save_experiment_data(provider_name, backend, experiment, fault_rates, ideal_
     experiment_results["extrapolation"] = dict()
     experiment_results["extrapolation"]["type"] = experiment["extrapolation"]["type"]
     experiment_results["extrapolation"]["parameters"] = dict(experiment["extrapolation"]["parameters"])
-    experiment_results["extrapolation"]["extrapolated_expectation_value"] = extrapolated_expectation_value
-    experiment_results["extrapolation"]["extrapolated_variance"] = extrapolated_variance
+    experiment_results["extrapolation"]["optimal_coefs"] = [float(optimal_coef) for optimal_coef in optimal_coefs]
+    experiment_results["extrapolation"]["coefs_variances"] = [float(variance) for variance in coefs_variances]
+    experiment_results["extrapolation"]["extrapolated_expectation_value"] = float(optimal_coefs[0])
+    experiment_results["extrapolation"]["extrapolated_variance"] = float(coefs_variances[0])
 
     results["experiments_results"].append(experiment_results)
 
@@ -220,8 +226,6 @@ credentials = config.load_config(working_directory, credentials_configfile)
 
 experiments_configuration = yaml_io.load_data(working_directory, experiments_configfile)
 pp.pprint(experiments_configuration)
-# experiments_4qubits
-# experiments_5qubits
 
 
 if not config.loaded_configurations(global_params, credentials):
@@ -312,6 +316,7 @@ else:
                 print(f"\t\t\t\t nb_shots: {experiment['nb_shots']}")
                 print(f"\t\t\t\t boost_method: {experiment['boost_method'].__name__}")
                 print(f"\t\t\t\t extrapolation: {experiment['extrapolation']['type']}")
+                print(f"\t\t\t\t extrapolation's parameters: {experiment['extrapolation']['parameters']}")
 
                 print("\t\t\t>> Initializing the variables for the current experiment...")
                 folded_circuits = []
@@ -410,20 +415,12 @@ else:
                 if experiment["extrapolation"]["type"] == "polynomial":
                     polynomial_degree = experiment["extrapolation"]["parameters"]["degree"]
                     optimal_coefs, covariance_matrix = experiment["extrapolation"]["function"](polynomial_degree, common_parameters["noise_factors"], noisy_expectation_values, noisy_std_deviations)
-                    # print(optimal_coefs)
-                    # print(covariance_matrix)
-                    extrapolated_expectation_value = float(optimal_coefs[0])
-                    extrapolated_variance = float(np.diag(covariance_matrix)[0])
-                    extrapolated_std_deviation = float(np.sqrt(extrapolated_variance))
-                    # print(extrapolated_expectation_value)
-                    # print(extrapolated_variance)
-                    # print(extrapolated_std_deviation)
-                    # print(f"mitigated_value = {extrapolated_expectation_value} +/- {extrapolated_std_deviation}")
+                    coefs_variances = np.diag(covariance_matrix)
 
                 #TODO richardson
                 # elif experiment["extrapolation"]["type"] == "richardson":
 
-                save_experiment_data(provider_name, backend, experiment, fault_rates, ideal_estimations, noisy_estimations, extrapolated_expectation_value, extrapolated_variance, results)
+                save_experiment_data(provider_name, backend, experiment, fault_rates, ideal_estimations, noisy_estimations, optimal_coefs, coefs_variances, results)
 
 #### == Storage of the data == ###
 print(">> Saving data...")
