@@ -44,6 +44,15 @@ def local_folding(initial_circuit, noise_factor):
 
     return folded_circuit 
 
+def get_existing_boosting_methods():
+
+    functions = {
+                    "global_folding": global_folding,
+                    "local_folding": local_folding
+                }
+
+    return functions
+
 ## == Tests == ##
 
 if __name__ == "__main__":
