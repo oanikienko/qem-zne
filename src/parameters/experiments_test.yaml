@@ -16,27 +16,50 @@ providers:
   - name: fake_provider
     backends: 
       - fake_nairobi
-      - fake_belem
+      # - fake_belem
   # - name: ibm_quantum_provider # test pour récupérer les backends des processeurs réels
   #   backends:
   #     - ibm_brisbane
   #     - ibm_osaka
   #     - ibm_kyoto
-  # - name: ibm_cloud_provider # test pour récupérer les backends des processeurs réels
-  #   backends:
-  #     - ibmq_qasm_simulator
 experiments:
-  - nb_shots: 1000
-    boost_method: global_folding
-    extrapolation:
-      type: polynomial
-      parameters: 
-        degree: 2
-        p0: None
-  - nb_shots: 1000
-    boost_method: local_folding
-    extrapolation:
-      type: polynomial
-      parameters: 
-        degree: 3
-        p0: None
+  - boost_method: global_folding
+    nb_shots: 
+      - 1000
+      # - 10000
+      # - 100000
+    extrapolations:
+      - type: polynomial
+        parameters: 
+          degrees: 
+            - 1
+            - 2
+            - 3
+            # - 4 # Needs 5 data points because 4+1 coefficients in polynomial function (so need to use more than 4 circuits)
+          p0: None
+      # - type: richardson
+      #   parameters:
+      # - type: exponential
+      #   parameters:
+      # - type: exponential-richardson
+      #   parameters:
+  - boost_method: local_folding
+    nb_shots: 
+      - 1000
+      # - 10000
+      # - 100000
+    extrapolations:
+      - type: polynomial
+        parameters: 
+          degrees: 
+            - 1
+            - 2
+            - 3
+            # - 4 # Needs 5 data points because 4+1 coefficients in polynomial function (so need to use more than 4 circuits)
+          p0: None
+      # - type: richardson
+      #   parameters:
+      # - type: exponential
+      #   parameters:
+      # - type: exponential-richardson
+      #   parameters:
