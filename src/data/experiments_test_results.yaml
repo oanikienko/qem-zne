@@ -12,41 +12,57 @@ experiments_results:
     fault_rate: 0.04352809002022939
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.772
-    noisy_variance: 0.40401599999999993
+    noisy_expectation_value: 0.784
+    noisy_variance: 0.3853439999999999
   - noise_factor: 3
     fault_rate: 0.39175281018206454
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.778
-    noisy_variance: 0.39471599999999996
+    noisy_expectation_value: 0.752
+    noisy_variance: 0.434496
   - noise_factor: 5
     fault_rate: 1.0882022505057352
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.702
-    noisy_variance: 0.507196
+    noisy_expectation_value: 0.732
+    noisy_variance: 0.46417600000000003
   - noise_factor: 7
     fault_rate: 2.13287641099124
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.708
-    noisy_variance: 0.49873600000000007
-  extrapolation:
-    type: polynomial
-    parameters:
-      degree: 2
-      p0: null
-    optimal_coefs:
-    - 0.7893104165739625
-    - -0.009473544826529954
-    - -0.000491093411792537
-    coefs_variances:
-    - 1.2340883951642707
-    - 0.4599789990564267
-    - 0.006968594549486482
-    extrapolated_expectation_value: 0.7893104165739625
-    extrapolated_variance: 1.2340883951642707
+    noisy_expectation_value: 0.658
+    noisy_variance: 0.567036
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        optimal_coefs:
+        - 0.7837625572114623
+        - -0.05698974651330896
+        coefs_variances:
+        - 0.23942181261980927
+        - 0.19304692911738536
+      2:
+        optimal_coefs:
+        - 0.7807204494334552
+        - -0.043986437698407904
+        - -0.00601666890606073
+        coefs_variances:
+        - 0.380017443428082
+        - 2.7618469310352234
+        - 0.5499647250424841
+      3:
+        optimal_coefs:
+        - 0.789783203125
+        - -0.13810426618217772
+        - 0.12221168356172948
+        - -0.04052279730427928
+        coefs_variances:
+        - 0.5774169341527564
+        - 24.05160187908644
+        - 40.06798906044274
+        - 3.9466262005927675
 - provider: fake_provider
   backend: fake_nairobi
   nb_shots: 1000
@@ -56,130 +72,54 @@ experiments_results:
     fault_rate: 0.04352809002022939
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.784
-    noisy_variance: 0.3853439999999999
+    noisy_expectation_value: 0.796
+    noisy_variance: 0.36638399999999993
   - noise_factor: 3
     fault_rate: 0.39175281018206454
-    ideal_expectation_value: 1.0
-    ideal_variance: 0.0
-    noisy_expectation_value: 0.778
-    noisy_variance: 0.39471599999999996
-  - noise_factor: 5
-    fault_rate: 1.0882022505057347
-    ideal_expectation_value: 1.0
-    ideal_variance: 0.0
-    noisy_expectation_value: 0.728
-    noisy_variance: 0.470016
-  - noise_factor: 7
-    fault_rate: 2.13287641099124
-    ideal_expectation_value: 1.0
-    ideal_variance: 0.0
-    noisy_expectation_value: 0.698
-    noisy_variance: 0.512796
-  extrapolation:
-    type: polynomial
-    parameters:
-      degree: 3
-      p0: null
-    optimal_coefs:
-    - 0.7505
-    - 0.049666666666666796
-    - -0.017500000000000026
-    - 0.0013333333333333348
-    coefs_variances:
-    - 4.592455660334008
-    - 6.131198975805717
-    - 0.5383886589392302
-    - 0.0037676718046916026
-    extrapolated_expectation_value: 0.7505
-    extrapolated_variance: 4.592455660334008
-- provider: fake_provider
-  backend: fake_belem
-  nb_shots: 1000
-  boost_method: global_folding
-  circuit_results:
-  - noise_factor: 1
-    fault_rate: 0.08239080811833915
-    ideal_expectation_value: 1.0
-    ideal_variance: 0.0
-    noisy_expectation_value: 0.714
-    noisy_variance: 0.4902040000000001
-  - noise_factor: 3
-    fault_rate: 0.7415172730650523
-    ideal_expectation_value: 1.0
-    ideal_variance: 0.0
-    noisy_expectation_value: 0.712
-    noisy_variance: 0.49305600000000005
-  - noise_factor: 5
-    fault_rate: 2.0597702029584792
-    ideal_expectation_value: 1.0
-    ideal_variance: 0.0
-    noisy_expectation_value: 0.638
-    noisy_variance: 0.592956
-  - noise_factor: 7
-    fault_rate: 4.037149597798618
-    ideal_expectation_value: 1.0
-    ideal_variance: 0.0
-    noisy_expectation_value: 0.614
-    noisy_variance: 0.623004
-  extrapolation:
-    type: polynomial
-    parameters:
-      degree: 2
-      p0: null
-    optimal_coefs:
-    - 0.7264934703345123
-    - -0.005322485114229987
-    - -0.001677903435666669
-    coefs_variances:
-    - 1.4932928375966699
-    - 0.5585073150437269
-    - 0.008523586374775535
-    extrapolated_expectation_value: 0.7264934703345123
-    extrapolated_variance: 1.4932928375966699
-- provider: fake_provider
-  backend: fake_belem
-  nb_shots: 1000
-  boost_method: local_folding
-  circuit_results:
-  - noise_factor: 1
-    fault_rate: 0.08239080811833915
-    ideal_expectation_value: 1.0
-    ideal_variance: 0.0
-    noisy_expectation_value: 0.724
-    noisy_variance: 0.475824
-  - noise_factor: 3
-    fault_rate: 0.7415172730650521
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
     noisy_expectation_value: 0.71
     noisy_variance: 0.4959
   - noise_factor: 5
-    fault_rate: 2.0597702029584792
+    fault_rate: 1.0882022505057347
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.61
-    noisy_variance: 0.6279
+    noisy_expectation_value: 0.742
+    noisy_variance: 0.44943600000000006
   - noise_factor: 7
-    fault_rate: 4.037149597798619
+    fault_rate: 2.13287641099124
     ideal_expectation_value: 1.0
     ideal_variance: 0.0
-    noisy_expectation_value: 0.594
-    noisy_variance: 0.6471640000000001
-  extrapolation:
-    type: polynomial
-    parameters:
-      degree: 3
-      p0: null
-    optimal_coefs:
-    - 0.6456250000000003
-    - 0.11745833333333283
-    - -0.04262499999999984
-    - 0.003541666666666653
-    coefs_variances:
-    - 5.794705926311391
-    - 7.825813078390009
-    - 0.6933714715577969
-    - 0.004877252916233304
-    extrapolated_expectation_value: 0.6456250000000003
-    extrapolated_variance: 5.794705926311391
+    noisy_expectation_value: 0.686
+    noisy_variance: 0.529404
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        optimal_coefs:
+        - 0.7738949521918151
+        - -0.04151534938507775
+        coefs_variances:
+        - 0.23991164646682853
+        - 0.18415301722630725
+      2:
+        optimal_coefs:
+        - 0.780665337181038
+        - -0.07128178464161582
+        - 0.013780683848325837
+        coefs_variances:
+        - 0.3679286178229953
+        - 2.658695774235736
+        - 0.5303748885918134
+      3:
+        optimal_coefs:
+        - 0.8145292968750001
+        - -0.44829867472649704
+        - 0.526529624492289
+        - -0.16156491912225687
+        coefs_variances:
+        - 0.553764172273521
+        - 25.69299542852471
+        - 43.13560773106821
+        - 4.230070055181538

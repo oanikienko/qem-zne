@@ -1,6 +1,6 @@
-# Script: 
+# Script: results_processing.py
 # Author: oanikienko
-# Date: 05/12/2023
+# Date: 10/12/2023
 
 ## === Libraries === ##
 
@@ -13,6 +13,7 @@ from extrapolation.polynomial_extrapolation import polynomial_function
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from matplotlib.offsetbox import AnchoredText
 import sys
 import pprint
 import os
@@ -23,21 +24,15 @@ from pathlib import Path
 
 ## === Functions === ##
 
-
-
+def get_parameters(argv):
+    if len(argv) < 3:
+        print("Error: An experiments data file and a directory for the images are required.")
+        sys.exit()
+    elif len(argv) > 3:
+        print("Error: Only 1 experiments data file and 1 directory are accepted.")
+        sys.exit()
     
-## === Global parameters === ##
-
-pp = pprint.PrettyPrinter(indent=3, depth=5, sort_dicts=False)
-
-working_directory = os.getcwd()
-
-global_params_configfile = "./parameters/global_parameters.ini"
-
-experiments_datafile = "./data/experiments_test_results.yaml"
-
-
-## === Main program === ##
+    return argv[1], argv[2]
 
 def extract_results(experiment):
 
@@ -55,42 +50,52 @@ def extract_results(experiment):
         results["ideal_estimations"][circuit_results["noise_factor"]] = [circuit_results["ideal_expectation_value"], circuit_results["ideal_variance"]]
         results["noisy_estimations"][circuit_results["noise_factor"]] = [circuit_results["noisy_expectation_value"], circuit_results["noisy_variance"]]
 
-    results["extrapolation"] = {
-            "type": experiment["extrapolation"]["type"],
-            "params": experiment["extrapolation"]["parameters"],
-            "optimal_coefs": experiment["extrapolation"]["optimal_coefs"],
-            "coefs_variances": experiment["extrapolation"]["coefs_variances"],
-            "extrapolated_results": [experiment["extrapolation"]["extrapolated_expectation_value"], experiment["extrapolation"]["extrapolated_variance"]]
-        }
+    results["extrapolations_results"] = experiment["extrapolations_results"]
 
     return results
 
 
-#TODO add the exception/errors management
 def build_circuits(experiments_data, experiment, results):
 
     circuits = []
 
     # Initial circuit
     circuits_functions = init.get_existing_circuits()
-    if not hasattr(init, experiments_data["circuit"]):
-        print("Error: the circuit {0} does not exist.".format(experiments_data["circuit"]))
-        raise KeyError
+    try:
+        common_parameters["circuit"] = circuits_functions[experiments_configuration["circuit"]]
+    except KeyError:
+        print("Error: the circuit {0} does not exist.".format(experiments_configuration["circuit"]))
+        sys.exit()
 
     circuits.append(init.build_initial_circuit(experiments_data["nb_qubits"], circuits_functions[experiments_data["circuit"]]))
     
     # Folded circuits
     boosting_methods = noise_boosting.get_existing_boosting_methods()
-    if not hasattr(noise_boosting, experiment["boost_method"]):
-        print("Error: the boosting method {0} does not exist.".format(experiment["boost_method"]))
-        raise KeyError
+    try:
+        experiment["boost_method"] = boosting_methods[experiments_configuration["experiments"][i]["boost_method"]]
+    except KeyError:
+        print("Error: the boosting method {0} does not exist.".format(experiments_configuration["experiments"][i]["boost_method"]))
+        sys.exit()
 
     for noise_factor in results["noise_factors"][1:]:
         circuits.append(boosting_methods[experiment["boost_method"]](circuits[0], noise_factor))
 
     return circuits
 
+    
+## === Global parameters === ##
 
+pp = pprint.PrettyPrinter(indent=3, depth=5, sort_dicts=False)
+
+working_directory = os.getcwd()
+
+global_params_configfile = "./parameters/global_parameters.ini"
+
+# experiments_datafile = "./data/experiments_test_results.yaml"
+experiments_datafile, storage_directory = get_parameters(sys.argv)
+
+
+## === Main program === ##
 
 ### == Loading of the configuration files == ###
 
@@ -98,11 +103,11 @@ print(">> Loading configurations...")
 global_params = config.load_config(working_directory, global_params_configfile)
 
 experiments_data = yaml_io.load_data(working_directory, experiments_datafile)
-pp.pprint(experiments_data)
+# pp.pprint(experiments_data)
 
 
 if not config.loaded_configurations(global_params):
-    print("Error: at least one configuration is empty. Please check your *.ini files (filepaths, permissions and syntax).")
+    print("Error: at least one configuration is empty. Please check your configuration files in parameters/ directory (filepaths, permissions and syntax).")
     sys.exit()
 
 else: 
@@ -127,17 +132,17 @@ else:
         print(f"\t\t backend: {experiment['backend']}")
         print(f"\t\t nb_shots: {experiment['nb_shots']}")
         print(f"\t\t boost_method: {experiment['boost_method']}")
-        print(f"\t\t extrapolation: {experiment['extrapolation']['type']}")
-        print(f"\t\t extrapolation's parameters: {experiment['extrapolation']['parameters']}")
+        # print(f"\t\t extrapolation: {experiment['extrapolation']['type']}")
+        # print(f"\t\t extrapolation's parameters: {experiment['extrapolation']['parameters']}")
 
         results = extract_results(experiment)
-        pp.pprint(results)
+        # pp.pprint(results)
 
 
-        print("\t>> Displaying the circuits...")
-        circuits = build_circuits(experiments_data, experiment, results)
-        for circuit in circuits:
-            print(circuit)
+        # print("\t>> Displaying the circuits...")
+        # circuits = build_circuits(experiments_data, experiment, results)
+        # for circuit in circuits:
+        #     print(circuit)
             #TODO Save the circuit as a PNG image
 
 
@@ -146,7 +151,8 @@ else:
         # plt.rcParams["figure.figsize"] = (5,3.5)
         plt.grid(which='major',axis='both')
 
-        noise_factors = results["noise_factors"]
+        # noise_factors = results["noise_factors"]
+        fault_rates = results["fault_rates"]
 
         ideal_expectation_values = np.array(list(results["ideal_estimations"].values()))[:,0]
         ideal_std_deviations = np.sqrt(np.array(list(results["ideal_estimations"].values()))[:,1])
@@ -154,33 +160,48 @@ else:
         noisy_expectation_values = np.array(list(results["noisy_estimations"].values()))[:,0]
         noisy_std_deviations = np.sqrt(np.array(list(results["noisy_estimations"].values()))[:,1])
 
-        mitigated_value = results["extrapolation"]["extrapolated_results"][0]
+        mitigated_values = dict()
+        extrapolation_type = None
+        for i in range(len(results["extrapolations_results"])):
+            if results["extrapolations_results"][i]["type"] == "polynomial":
+                extrapolation_type = "polynomial extrapolation"
+                for degree in results["extrapolations_results"][i]["degrees"].keys():
+                    mitigated_values[degree] = [
+                                                    results["extrapolations_results"][i]["degrees"][degree]["optimal_coefs"][0],
+                                                    results["extrapolations_results"][i]["degrees"][degree]["coefs_variances"][0]
+                                               ]
+        #TODO add management of the others extrapolations
 
         #TODO add the function used for the extrapolation
         # print(noise_factors)
         # print(results["extrapolation"]["optimal_coefs"])
         # y = polynomial_function(noise_factors[0], results["extrapolation"]["optimal_coefs"])
 
-        plt.errorbar([0, noise_factors[-1]],[ideal_expectation_values[0], ideal_expectation_values[-1]], [ideal_std_deviations[0], ideal_std_deviations[-1]], linestyle="--", label=f"Ideal", color="#000000")
-        plt.errorbar(noise_factors, noisy_expectation_values, noisy_std_deviations, linestyle='None', marker='.', capsize=3, label=f"Unmitigated", color="#dc267f")
-        plt.scatter(0, mitigated_value, label="Mitigated", marker="x", color="#785ef0")
-        # plt.plot(noise_factors, y, label="Extrapolation", linestyle="-", color="red")
-        plt.title(f"Zero-noise extrapolation\n{experiment['backend']}, N_shots = {experiment['nb_shots']}, {experiment['boost_method']}, {experiment['extrapolation']['type']} extrapolation")
-        plt.xlabel("Noise factors")
-        plt.ylabel(f"Expectation Value ($\langle {experiments_data['observable']} \\rangle$)")
-        # plt.figtext(0.0, 0.5, f"{experiment['backend']}\nN_shots = {experiment['nb_shots']}\n{experiment['boost_method']}\n{experiment['extrapolation']['type']} extrapolation", fontsize=10)
-        plt.legend()
-        plt.tight_layout(pad=3.0)
+        plt.errorbar([0, fault_rates[-1]],[ideal_expectation_values[0], ideal_expectation_values[-1]], [ideal_std_deviations[0], ideal_std_deviations[-1]], linestyle="--", label=f"Ideal", color="#000000")
+        plt.errorbar(fault_rates, noisy_expectation_values, noisy_std_deviations, linestyle='None', marker='.', capsize=3, label=f"Estimates", color="#bc5ed8")
 
-        plt.show()
+        for degree in mitigated_values.keys():
+            plt.scatter(0.0, mitigated_values[degree][0], label=f"Degree {degree}", marker="x")
 
-        # plt.errorbar([0, noise_factors[-1]],[ideal_expectation_values[0], ideal_expectation_values[-1]], [ideal_std_deviations[0], ideal_std_deviations[-1]], linestyle="--", label=f"Ideal", color="#000000")
-        # plt.scatter(0, mitigated_value, label="Mitigated", marker="x", color="#785ef0")
-        # plt.plot(noise_factors, noisy_expectation_values, linestyle='None', marker='.', label=f"Unmitigated", color="#dc267f")
-        # plt.title(f"Zero-noise extrapolation")
-        # plt.figtext(1.75, 0.0, f"{experiment['backend']}\nN_shots = {experiment['nb_shots']}\n{experiment['boost_method']}\n{experiment['extrapolation']['type']} extrapolation", fontsize=10)
+        # plt.plot(fault_rates, y, label="Extrapolation", linestyle="-", color="red")
+        plt.title(f"Zero-noise extrapolation\n{experiment['backend']}, N_shots = {experiment['nb_shots']}, {experiment['boost_method']}, {extrapolation_type}")
+        plt.xlabel("Fault rates")
+        plt.ylabel(f"Expectation Value ($\langle {experiments_data['observable'][0]} \\rangle$)")
+        # plt.legend(title="Legend", loc="lower right", borderaxespad=0)
+        plt.legend(ncols=3, bbox_to_anchor=(0,0), loc='lower left', fontsize='x-small')
+        # plt.legend(title="Legend", bbox_to_anchor=(1.04, 0.5), loc="center left", borderaxespad=0)
+        plt.tight_layout(pad=1.04)
+        extrapolation_type = extrapolation_type.replace(" ", "_")
+        plt.savefig(f"{working_directory}/{storage_directory}/zne_{experiment['backend']}_{experiment['boost_method']}_{experiment['nb_shots']}_{extrapolation_type}.png")
+        plt.close()
+
+        # plt.plot([0, fault_rates[-1]],[ideal_expectation_values[0], ideal_expectation_values[-1]], linestyle="--", label=f"Ideal", color="#000000")
+        # plt.scatter(0, mitigated_value, label=f"Mitigated", marker="x", color="#785ef0")
+        # plt.plot(fault_rates, noisy_expectation_values, linestyle='None', marker='.', label=f"Unmitigated", color="#dc267f")
+        # plt.title(f"Zero-noise extrapolation\n{experiment['backend']}, N_shots = {experiment['nb_shots']}, {experiment['boost_method']}, {experiment['extrapolation']['type']} extrapolation")
         # plt.xlabel("Noise factors")
-        # plt.ylabel(f"Expectation Value ($\langle {experiments_data['observable']} \\rangle$)")
+        # plt.ylabel(f"Expectation Value ($\langle {experiments_data['observable'][0]} \\rangle$)")
+        # plt.tight_layout(pad=3.0)
         # plt.legend()
         # plt.show()
 

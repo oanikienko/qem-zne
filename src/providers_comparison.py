@@ -52,9 +52,9 @@ print(f"Common backends between the two circuits: {common_backends}")
 
 
 # print(">> Comparison between backends from IBM Cloud")
-# working_directory = os.getcwd()
-# credentials_configfile = "./credentials.ini"
-# credentials = config.load_config(working_directory, credentials_configfile)
+working_directory = os.getcwd()
+credentials_configfile = "./credentials.ini"
+credentials = config.load_config(working_directory, credentials_configfile)
 # service = QiskitRuntimeService(
 #                                 channel=credentials["ibm.cloud"]["channel"],
 #                                 token=credentials["ibm.cloud"]["api_key"],
@@ -67,14 +67,15 @@ print(f"Common backends between the two circuits: {common_backends}")
 
 # print(">> Comparison between backends from IBM Quantum")
 
-# service = QiskitRuntimeService(
-#                                 channel=credentials["ibm.quantum"]["channel"],
-#                                 token=credentials["ibm.quantum"]["api_token"],
-#                                 instance=credentials["ibm.quantum"]["instance"]
-#                               )
+service = QiskitRuntimeService(
+                                channel=credentials["ibm.quantum"]["channel"],
+                                token=credentials["ibm.quantum"]["api_token"],
+                                instance=credentials["ibm.quantum"]["instance"]
+                              )
 
-# # print(service.instances())
-# print(service.backends())
+print(service.instances())
+print(service.backends())
+print(service.get_backend("ibmq_qasm_simulator"))
 
 
 # print(providers.search_backend(service, 'ibm_brisbane'))
