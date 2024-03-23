@@ -1,0 +1,1270 @@
+circuit: U_4qubits
+nb_qubits: 4
+observable: Z
+optimization_level: 0
+resilience_level: 2
+experiments_results:
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 5000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.04316899930540088
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0048
+    noisy_variance: 0.99997696
+  - noise_factor: 3
+    fault_rate: 0.12858216641802916
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0092
+    noisy_variance: 0.99991536
+  - noise_factor: 5
+    fault_rate: 0.21401325021516374
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0076
+    noisy_variance: 0.99994224
+  - noise_factor: 7
+    fault_rate: 0.29943537567004513
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0144
+    noisy_variance: 0.99979264
+  - noise_factor: 9
+    fault_rate: 0.3848575011249262
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0068
+    noisy_variance: 0.99995376
+  - noise_factor: 11
+    fault_rate: 0.4702706682375546
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0
+    noisy_variance: 1.0
+  - noise_factor: 13
+    fault_rate: 0.5557017520346891
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.028
+    noisy_variance: 0.999216
+  - noise_factor: 15
+    fault_rate: 0.6411238774895707
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0044
+    noisy_variance: 0.99998064
+  - noise_factor: 17
+    fault_rate: 0.7265370446021985
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.018
+    noisy_variance: 0.999676
+  - noise_factor: 19
+    fault_rate: 0.8119591700570796
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0096
+    noisy_variance: 0.99990784
+  execution_times:
+    ideal_backend:
+      total_time: 2.180076
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 23580.102125
+      quantum_time: 20.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        ideal_expectation_value: 0.9999999999999999
+        noisy_expectation_value: 0.004796728359640933
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 10000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.04316899930540088
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0208
+    noisy_variance: 0.99956736
+  - noise_factor: 3
+    fault_rate: 0.12858216641802916
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0144
+    noisy_variance: 0.99979264
+  - noise_factor: 5
+    fault_rate: 0.21401325021516374
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.018
+    noisy_variance: 0.999676
+  - noise_factor: 7
+    fault_rate: 0.29943537567004513
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0012
+    noisy_variance: 0.99999856
+  - noise_factor: 9
+    fault_rate: 0.3848575011249262
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0054
+    noisy_variance: 0.99997084
+  - noise_factor: 11
+    fault_rate: 0.4702706682375546
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0056
+    noisy_variance: 0.99996864
+  - noise_factor: 13
+    fault_rate: 0.5557017520346891
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.001
+    noisy_variance: 0.999999
+  - noise_factor: 15
+    fault_rate: 0.6411238774895707
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0068
+    noisy_variance: 0.99995376
+  - noise_factor: 17
+    fault_rate: 0.7265370446021985
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0094
+    noisy_variance: 0.99991164
+  - noise_factor: 19
+    fault_rate: 0.8119591700570796
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0006
+    noisy_variance: 0.99999964
+  execution_times:
+    ideal_backend:
+      total_time: 560.704257
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 14059.131549
+      quantum_time: 35.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        ideal_expectation_value: 0.9999999999999999
+        noisy_expectation_value: -0.005679918797548491
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 15000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.04316899930540088
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0104
+    noisy_variance: 0.99989184
+  - noise_factor: 3
+    fault_rate: 0.12858216641802916
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0013333333333333333
+    noisy_variance: 0.9999982222222222
+  - noise_factor: 5
+    fault_rate: 0.21401325021516374
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.002
+    noisy_variance: 0.999996
+  - noise_factor: 7
+    fault_rate: 0.29943537567004513
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0212
+    noisy_variance: 0.99955056
+  - noise_factor: 9
+    fault_rate: 0.3848575011249262
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.005733333333333333
+    noisy_variance: 0.9999671288888888
+  - noise_factor: 11
+    fault_rate: 0.4702706682375546
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.006
+    noisy_variance: 0.999964
+  - noise_factor: 13
+    fault_rate: 0.5557017520346891
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0052
+    noisy_variance: 0.99997296
+  - noise_factor: 15
+    fault_rate: 0.6411238774895707
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.016666666666666666
+    noisy_variance: 0.9997222222222222
+  - noise_factor: 17
+    fault_rate: 0.7265370446021985
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.002533333333333333
+    noisy_variance: 0.9999935822222222
+  - noise_factor: 19
+    fault_rate: 0.8119591700570796
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.017733333333333334
+    noisy_variance: 0.9996855288888888
+  execution_times:
+    ideal_backend:
+      total_time: 352.544832
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 14353.943095
+      quantum_time: 52.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        ideal_expectation_value: 0.9999999999999999
+        noisy_expectation_value: -0.005809495715564713
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 20000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.04316899930540088
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0046
+    noisy_variance: 0.99997884
+  - noise_factor: 3
+    fault_rate: 0.12858216641802916
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0022
+    noisy_variance: 0.99999516
+  - noise_factor: 5
+    fault_rate: 0.21401325021516374
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0034
+    noisy_variance: 0.99998844
+  - noise_factor: 7
+    fault_rate: 0.29943537567004513
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0027
+    noisy_variance: 0.99999271
+  - noise_factor: 9
+    fault_rate: 0.3848575011249262
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0023
+    noisy_variance: 0.99999471
+  - noise_factor: 11
+    fault_rate: 0.4702706682375546
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0038
+    noisy_variance: 0.99998556
+  - noise_factor: 13
+    fault_rate: 0.5557017520346891
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0022
+    noisy_variance: 0.99999516
+  - noise_factor: 15
+    fault_rate: 0.6411238774895707
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0073
+    noisy_variance: 0.99994671
+  - noise_factor: 17
+    fault_rate: 0.7265370446021985
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0104
+    noisy_variance: 0.99989184
+  - noise_factor: 19
+    fault_rate: 0.8119591700570796
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0057
+    noisy_variance: 0.99996751
+  execution_times:
+    ideal_backend:
+      total_time: 5.250386
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 609.895781
+      quantum_time: 68.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        ideal_expectation_value: 0.9999999999999999
+        noisy_expectation_value: 0.00030173726742070434
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 5000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.04316899930540088
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0072
+    noisy_variance: 0.99994816
+  - noise_factor: 3
+    fault_rate: 0.12858216641802916
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0004
+    noisy_variance: 0.99999984
+  - noise_factor: 5
+    fault_rate: 0.21401325021516374
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0168
+    noisy_variance: 0.99971776
+  - noise_factor: 7
+    fault_rate: 0.29943537567004513
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0044
+    noisy_variance: 0.99998064
+  - noise_factor: 9
+    fault_rate: 0.3848575011249262
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0076
+    noisy_variance: 0.99994224
+  - noise_factor: 11
+    fault_rate: 0.4702796265798075
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.004
+    noisy_variance: 0.999984
+  - noise_factor: 13
+    fault_rate: 0.5556927936924358
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.014
+    noisy_variance: 0.999804
+  - noise_factor: 15
+    fault_rate: 0.6411149191473172
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.018
+    noisy_variance: 0.999676
+  - noise_factor: 17
+    fault_rate: 0.7265370446021985
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0092
+    noisy_variance: 0.99991536
+  - noise_factor: 19
+    fault_rate: 0.8119591700570796
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0052
+    noisy_variance: 0.99997296
+  execution_times:
+    ideal_backend:
+      total_time: 2912.34524
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 15287.110277
+      quantum_time: 20.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      2:
+        ideal_expectation_value: 0.9999999999999991
+        noisy_expectation_value: 0.004528557733495318
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 10000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.04316899930540088
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.01
+    noisy_variance: 0.9999
+  - noise_factor: 3
+    fault_rate: 0.12858216641802916
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0052
+    noisy_variance: 0.99997296
+  - noise_factor: 5
+    fault_rate: 0.21401325021516374
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.001
+    noisy_variance: 0.999999
+  - noise_factor: 7
+    fault_rate: 0.29943537567004513
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0036
+    noisy_variance: 0.99998704
+  - noise_factor: 9
+    fault_rate: 0.3848575011249262
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0036
+    noisy_variance: 0.99998704
+  - noise_factor: 11
+    fault_rate: 0.4702796265798075
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0138
+    noisy_variance: 0.99980956
+  - noise_factor: 13
+    fault_rate: 0.5556927936924358
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.005
+    noisy_variance: 0.999975
+  - noise_factor: 15
+    fault_rate: 0.6411149191473172
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0068
+    noisy_variance: 0.99995376
+  - noise_factor: 17
+    fault_rate: 0.7265370446021985
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0086
+    noisy_variance: 0.99992604
+  - noise_factor: 19
+    fault_rate: 0.8119591700570796
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0094
+    noisy_variance: 0.99991164
+  execution_times:
+    ideal_backend:
+      total_time: 2945.882126
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 32386.487304
+      quantum_time: 36.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      2:
+        ideal_expectation_value: 0.9999999999999991
+        noisy_expectation_value: 0.0035063716417000385
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 15000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.04316899930540088
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.006266666666666667
+    noisy_variance: 0.9999607288888889
+  - noise_factor: 3
+    fault_rate: 0.12858216641802916
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0037333333333333333
+    noisy_variance: 0.9999860622222222
+  - noise_factor: 5
+    fault_rate: 0.21401325021516374
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.004666666666666667
+    noisy_variance: 0.9999782222222222
+  - noise_factor: 7
+    fault_rate: 0.29943537567004513
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.005066666666666666
+    noisy_variance: 0.9999743288888889
+  - noise_factor: 9
+    fault_rate: 0.3848575011249262
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.004533333333333334
+    noisy_variance: 0.9999794488888889
+  - noise_factor: 11
+    fault_rate: 0.4702796265798075
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0052
+    noisy_variance: 0.99997296
+  - noise_factor: 13
+    fault_rate: 0.5556927936924358
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.005866666666666667
+    noisy_variance: 0.9999655822222222
+  - noise_factor: 15
+    fault_rate: 0.6411149191473172
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0021333333333333334
+    noisy_variance: 0.9999954488888889
+  - noise_factor: 17
+    fault_rate: 0.7265370446021985
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0018666666666666666
+    noisy_variance: 0.9999965155555556
+  - noise_factor: 19
+    fault_rate: 0.8119591700570796
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.006533333333333334
+    noisy_variance: 0.9999573155555556
+  execution_times:
+    ideal_backend:
+      total_time: 900.634709
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 5240.238984
+      quantum_time: 52.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      2:
+        ideal_expectation_value: 0.9999999999999991
+        noisy_expectation_value: -0.0024484721633791003
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 20000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.04316899930540088
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.002
+    noisy_variance: 0.999996
+  - noise_factor: 3
+    fault_rate: 0.12858216641802916
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0027
+    noisy_variance: 0.99999271
+  - noise_factor: 5
+    fault_rate: 0.21401325021516374
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0009
+    noisy_variance: 0.99999919
+  - noise_factor: 7
+    fault_rate: 0.29943537567004513
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.004
+    noisy_variance: 0.999984
+  - noise_factor: 9
+    fault_rate: 0.3848575011249262
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0064
+    noisy_variance: 0.99995904
+  - noise_factor: 11
+    fault_rate: 0.4702796265798075
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0017
+    noisy_variance: 0.99999711
+  - noise_factor: 13
+    fault_rate: 0.5556927936924358
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0029
+    noisy_variance: 0.99999159
+  - noise_factor: 15
+    fault_rate: 0.6411149191473172
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0077
+    noisy_variance: 0.99994071
+  - noise_factor: 17
+    fault_rate: 0.7265370446021985
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0073
+    noisy_variance: 0.99994671
+  - noise_factor: 19
+    fault_rate: 0.8119591700570796
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0119
+    noisy_variance: 0.99985839
+  execution_times:
+    ideal_backend:
+      total_time: 1734.034456
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 13498.538108
+      quantum_time: 68.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      2:
+        ideal_expectation_value: 0.9999999999999991
+        noisy_expectation_value: -0.005821175549778301
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 5000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.03951755506930096
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.002
+    noisy_variance: 0.999996
+  - noise_factor: 3
+    fault_rate: 0.11760340578088384
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.016
+    noisy_variance: 0.999744
+  - noise_factor: 5
+    fault_rate: 0.19563527712499246
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.002
+    noisy_variance: 0.999996
+  - noise_factor: 7
+    fault_rate: 0.2736671484690996
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0168
+    noisy_variance: 0.99971776
+  - noise_factor: 9
+    fault_rate: 0.35169901981320806
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0004
+    noisy_variance: 0.99999984
+  - noise_factor: 11
+    fault_rate: 0.42973089115731655
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0152
+    noisy_variance: 0.99976896
+  - noise_factor: 13
+    fault_rate: 0.5077627625014246
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0156
+    noisy_variance: 0.99975664
+  - noise_factor: 15
+    fault_rate: 0.5857946338455325
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0056
+    noisy_variance: 0.99996864
+  - noise_factor: 17
+    fault_rate: 0.6638265051896406
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0028
+    noisy_variance: 0.99999216
+  - noise_factor: 19
+    fault_rate: 0.741858376533749
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0136
+    noisy_variance: 0.99981504
+  execution_times:
+    ideal_backend:
+      total_time: 1772.591671
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 10487.719789
+      quantum_time: 20.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      3:
+        ideal_expectation_value: 0.9999999999999998
+        noisy_expectation_value: -0.012901204595468663
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 10000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.03951755506930096
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0104
+    noisy_variance: 0.99989184
+  - noise_factor: 3
+    fault_rate: 0.11760340578088384
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0212
+    noisy_variance: 0.99955056
+  - noise_factor: 5
+    fault_rate: 0.19563527712499246
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.003
+    noisy_variance: 0.999991
+  - noise_factor: 7
+    fault_rate: 0.2736671484690996
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0142
+    noisy_variance: 0.99979836
+  - noise_factor: 9
+    fault_rate: 0.35169901981320806
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0038
+    noisy_variance: 0.99998556
+  - noise_factor: 11
+    fault_rate: 0.42973089115731655
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0054
+    noisy_variance: 0.99997084
+  - noise_factor: 13
+    fault_rate: 0.5077627625014246
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.001
+    noisy_variance: 0.999999
+  - noise_factor: 15
+    fault_rate: 0.5857946338455325
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0112
+    noisy_variance: 0.99987456
+  - noise_factor: 17
+    fault_rate: 0.6638265051896406
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0026
+    noisy_variance: 0.99999324
+  - noise_factor: 19
+    fault_rate: 0.741858376533749
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0102
+    noisy_variance: 0.99989596
+  execution_times:
+    ideal_backend:
+      total_time: 955.040171
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 389.917445
+      quantum_time: 36.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      3:
+        ideal_expectation_value: 0.9999999999999998
+        noisy_expectation_value: 0.007515717997174503
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 15000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.03951755506930096
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0004
+    noisy_variance: 0.99999984
+  - noise_factor: 3
+    fault_rate: 0.11760340578088384
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0
+    noisy_variance: 1.0
+  - noise_factor: 5
+    fault_rate: 0.19563527712499246
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0004
+    noisy_variance: 0.99999984
+  - noise_factor: 7
+    fault_rate: 0.2736671484690996
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0064
+    noisy_variance: 0.99995904
+  - noise_factor: 9
+    fault_rate: 0.35169901981320806
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0038666666666666667
+    noisy_variance: 0.9999850488888888
+  - noise_factor: 11
+    fault_rate: 0.42973089115731655
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.015333333333333332
+    noisy_variance: 0.9997648888888889
+  - noise_factor: 13
+    fault_rate: 0.5077627625014246
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.010533333333333334
+    noisy_variance: 0.9998890488888889
+  - noise_factor: 15
+    fault_rate: 0.5857946338455325
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0018666666666666666
+    noisy_variance: 0.9999965155555556
+  - noise_factor: 17
+    fault_rate: 0.6638265051896406
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0021333333333333334
+    noisy_variance: 0.9999954488888889
+  - noise_factor: 19
+    fault_rate: 0.741858376533749
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0034666666666666665
+    noisy_variance: 0.9999879822222222
+  execution_times:
+    ideal_backend:
+      total_time: 2588.919997
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 5374.226932
+      quantum_time: 52.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      3:
+        ideal_expectation_value: 0.9999999999999998
+        noisy_expectation_value: 0.002835961604680263
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 20000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.03951755506930096
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0204
+    noisy_variance: 0.99958384
+  - noise_factor: 3
+    fault_rate: 0.11760340578088384
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0018
+    noisy_variance: 0.99999676
+  - noise_factor: 5
+    fault_rate: 0.19563527712499246
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0
+    noisy_variance: 1.0
+  - noise_factor: 7
+    fault_rate: 0.2736671484690996
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0072
+    noisy_variance: 0.99994816
+  - noise_factor: 9
+    fault_rate: 0.35169901981320806
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0015
+    noisy_variance: 0.99999775
+  - noise_factor: 11
+    fault_rate: 0.42973089115731655
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0072
+    noisy_variance: 0.99994816
+  - noise_factor: 13
+    fault_rate: 0.5077627625014246
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0027
+    noisy_variance: 0.99999271
+  - noise_factor: 15
+    fault_rate: 0.5857946338455325
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0062
+    noisy_variance: 0.99996156
+  - noise_factor: 17
+    fault_rate: 0.6638265051896406
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0004
+    noisy_variance: 0.99999984
+  - noise_factor: 19
+    fault_rate: 0.741858376533749
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0104
+    noisy_variance: 0.99989184
+  execution_times:
+    ideal_backend:
+      total_time: 2283.61051
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 4830.690517
+      quantum_time: 68.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      3:
+        ideal_expectation_value: 0.9999999999999998
+        noisy_expectation_value: 0.025654222919664654
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 5000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.040406999329781285
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0108
+    noisy_variance: 0.99988336
+  - noise_factor: 3
+    fault_rate: 0.12001392705196072
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0044
+    noisy_variance: 0.99998064
+  - noise_factor: 5
+    fault_rate: 0.19960901887140997
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0048
+    noisy_variance: 0.99997696
+  - noise_factor: 7
+    fault_rate: 0.27921594659358817
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.04
+    noisy_variance: 0.9984
+  - noise_factor: 9
+    fault_rate: 0.35881695636440225
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0044
+    noisy_variance: 0.99998064
+  - noise_factor: 11
+    fault_rate: 0.43841204818385093
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0172
+    noisy_variance: 0.99970416
+  - noise_factor: 13
+    fault_rate: 0.5180189759060302
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0196
+    noisy_variance: 0.99961584
+  - noise_factor: 15
+    fault_rate: 0.5976199856768439
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.006
+    noisy_variance: 0.999964
+  - noise_factor: 17
+    fault_rate: 0.6772209954476576
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0052
+    noisy_variance: 0.99997296
+  - noise_factor: 19
+    fault_rate: 0.7568160872671067
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0188
+    noisy_variance: 0.99964656
+  execution_times:
+    ideal_backend:
+      total_time: 1030.836202
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 4412.633974
+      quantum_time: 20.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      4:
+        ideal_expectation_value: 0.9999999999999999
+        noisy_expectation_value: -0.022662785239029877
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 10000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.040406999329781285
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0124
+    noisy_variance: 0.99984624
+  - noise_factor: 3
+    fault_rate: 0.12001392705196072
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0126
+    noisy_variance: 0.99984124
+  - noise_factor: 5
+    fault_rate: 0.19960901887140997
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.006
+    noisy_variance: 0.999964
+  - noise_factor: 7
+    fault_rate: 0.27921594659358817
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0014
+    noisy_variance: 0.99999804
+  - noise_factor: 9
+    fault_rate: 0.35881695636440225
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0066
+    noisy_variance: 0.99995644
+  - noise_factor: 11
+    fault_rate: 0.43841204818385093
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0172
+    noisy_variance: 0.99970416
+  - noise_factor: 13
+    fault_rate: 0.5180189759060302
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0042
+    noisy_variance: 0.99998236
+  - noise_factor: 15
+    fault_rate: 0.5976199856768439
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0072
+    noisy_variance: 0.99994816
+  - noise_factor: 17
+    fault_rate: 0.6772209954476576
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0126
+    noisy_variance: 0.99984124
+  - noise_factor: 19
+    fault_rate: 0.7568160872671067
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0078
+    noisy_variance: 0.99993916
+  execution_times:
+    ideal_backend:
+      total_time: 2625.654222
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 3891.477973
+      quantum_time: 36.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      4:
+        ideal_expectation_value: 0.9999999999999999
+        noisy_expectation_value: 0.012430766228592151
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 15000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.040406999329781285
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.009333333333333334
+    noisy_variance: 0.9999128888888889
+  - noise_factor: 3
+    fault_rate: 0.12001392705196072
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.014133333333333333
+    noisy_variance: 0.9998002488888889
+  - noise_factor: 5
+    fault_rate: 0.19960901887140997
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.004533333333333334
+    noisy_variance: 0.9999794488888889
+  - noise_factor: 7
+    fault_rate: 0.27921594659358817
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0056
+    noisy_variance: 0.99996864
+  - noise_factor: 9
+    fault_rate: 0.35881695636440225
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.010933333333333333
+    noisy_variance: 0.9998804622222223
+  - noise_factor: 11
+    fault_rate: 0.43841204818385093
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0044
+    noisy_variance: 0.99998064
+  - noise_factor: 13
+    fault_rate: 0.5180189759060302
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0004
+    noisy_variance: 0.99999984
+  - noise_factor: 15
+    fault_rate: 0.5976199856768439
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0012
+    noisy_variance: 0.99999856
+  - noise_factor: 17
+    fault_rate: 0.6772209954476576
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0017333333333333333
+    noisy_variance: 0.9999969955555555
+  - noise_factor: 19
+    fault_rate: 0.7568160872671067
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0002666666666666667
+    noisy_variance: 0.9999999288888889
+  execution_times:
+    ideal_backend:
+      total_time: 932.487557
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 173.666653
+      quantum_time: 52.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      4:
+        ideal_expectation_value: 0.9999999999999999
+        noisy_expectation_value: -0.01292192853550848
+- provider: ibm_quantum_provider
+  backend: ibm_brisbane
+  nb_shots: 20000
+  boost_method: LocalFoldingAmplifier
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.040406999329781285
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.008
+    noisy_variance: 0.999936
+  - noise_factor: 3
+    fault_rate: 0.12001392705196072
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0114
+    noisy_variance: 0.99987004
+  - noise_factor: 5
+    fault_rate: 0.19960901887140997
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0091
+    noisy_variance: 0.99991719
+  - noise_factor: 7
+    fault_rate: 0.27921594659358817
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0177
+    noisy_variance: 0.99968671
+  - noise_factor: 9
+    fault_rate: 0.35881695636440225
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0015
+    noisy_variance: 0.99999775
+  - noise_factor: 11
+    fault_rate: 0.43841204818385093
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0075
+    noisy_variance: 0.99994375
+  - noise_factor: 13
+    fault_rate: 0.5180189759060302
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0066
+    noisy_variance: 0.99995644
+  - noise_factor: 15
+    fault_rate: 0.5976199856768439
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0051
+    noisy_variance: 0.99997399
+  - noise_factor: 17
+    fault_rate: 0.6772209954476576
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: -0.0022
+    noisy_variance: 0.99999516
+  - noise_factor: 19
+    fault_rate: 0.7568160872671067
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0071
+    noisy_variance: 0.99994959
+  execution_times:
+    ideal_backend:
+      total_time: 2536.574155
+      quantum_time: 0.0
+    noisy_backend:
+      total_time: 925.02751
+      quantum_time: 68.0
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      4:
+        ideal_expectation_value: 0.9999999999999999
+        noisy_expectation_value: -0.004268289293957066

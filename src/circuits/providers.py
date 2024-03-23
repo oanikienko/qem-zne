@@ -73,13 +73,22 @@ def get_operations_with_error_rates(backend):
 
     return operations
 
+def get_specific_gates_with_error_rates(backend, specific_gate):
+
+    operations = []
+
+    for gate in backend.target.keys():
+        for qbits in backend.target[gate].keys():
+            if backend.target[gate][qbits] != None and backend.target[gate][qbits] != None and gate == specific_gate:
+                operations.append((gate, qbits))
+
+    return operations
 
 def get_gate_errors(backend):
 
     gate_errors = dict()
 
     for gate in backend.target.keys():
-        # print("\t", gate)
         gate_errors[gate] = dict()
         for qbits in backend.target[gate].keys():
             if backend.target[gate][qbits] != None and backend.target[gate][qbits] != None:
@@ -111,12 +120,40 @@ def calculate_error_rate(circuit, backend, noise_factor):
     # Get the error rate for each gate for the backend
     gate_errors = get_gate_errors(backend)
 
-
     # Compute the error rate of the circuit
     circuit_error_rate = 0
     for gate in instructions:
         for qubits in instructions[gate]:
+            # print("qubits:", qubits)
+            # print("gate: ", gate)
             circuit_error_rate += noise_factor*gate_errors[gate][qubits]
+
+    return circuit_error_rate
+
+def calculate_fault_rate(transpiled_circuit, backend):
+
+    # Get gates in the transpiled_circuit
+    instructions = dict()
+    for circuit_instruction in transpiled_circuit.data:
+
+        gate = circuit_instruction.operation.name
+        indexes = tuple([transpiled_circuit.find_bit(qubit).index for qubit in circuit_instruction.qubits])
+
+        if not gate in instructions:
+            instructions[gate] = []
+
+        l = instructions[gate]
+        l.append(indexes)
+        instructions[gate] = l
+        
+    # Get the error rate for each gate for the backend
+    gate_errors = get_gate_errors(backend)
+
+    # Compute the error rate of the transpiled_circuit
+    circuit_error_rate = 0
+    for gate in instructions:
+        for qubits in instructions[gate]:
+            circuit_error_rate += gate_errors[gate][qubits]
 
     return circuit_error_rate
 
@@ -129,7 +166,6 @@ def search_backend(provider, searched_backend_name):
             searched_backend = backend
 
     return searched_backend
-
 
 def get_backends(provider, backends_names):
 
@@ -158,6 +194,24 @@ def select_backends_with_gates(provider, chosen_gates):
 
     return selected_backends
 
+def select_real_backends_with_gates(backends, chosen_gates):
+
+    selected_backends = []
+    backends_gates = dict()
+
+    # 1) Getting the gates for the backends
+    for backend in backends:
+        backends_gates[backend.name] = get_gate_errors(backend)
+
+    # 2) Selecting the backends for which the gates are the ones in the chosen gates
+    for backend_name in backends_gates.keys():
+        gates = backends_gates[backend_name]
+        for gate in gates.keys():
+            if gate in chosen_gates.keys():
+                if (all(qubits in gates[gate].keys() for qubits in chosen_gates[gate])):
+                    selected_backends.append(backend_name)
+
+    return selected_backends
 
 def select_backends_for_circuit(provider, circuit):
 
@@ -200,17 +254,63 @@ def select_backends_for_circuit(provider, circuit):
 
     return selected_backends
 
+def select_real_backends_for_circuit(backends, circuit):
+
+    selected_backends = []
+    circuit_gates = dict()
+    backends_gates = dict()
+
+    # 1) Getting the existing gates in the circuit
+    for circuit_instruction in circuit.data:
+        # print("Operation: ", circuit_instruction.operation)
+        # print("Qubits: ", circuit_instruction.qubits)
+        # print("\tFind qubit: ", [circuit.find_bit(qubit) for qubit in circuit_instruction.qubits])
+        # print("\tIndex: ", tuple([circuit.find_bit(qubit).index for qubit in circuit_instruction.qubits]))
+        # print("\tRegister: ", [circuit.find_bit(qubit).registers for qubit in circuit_instruction.qubits])
+        # print("Cbits: ", circuit_instruction.clbits)
+        gate = circuit_instruction.operation.name
+        indexes = tuple([circuit.find_bit(qubit).index for qubit in circuit_instruction.qubits])
+
+        if not gate in circuit_gates:
+            circuit_gates[gate] = []
+
+        l = circuit_gates[gate]
+        l.append(indexes)
+        circuit_gates[gate] = l
+
+    # 2) Getting the gates with known error rates for all backends
+    for backend in backends:
+        backends_gates[backend.name] = get_gate_errors(backend)
+
+    # 3) Selecting the backends for which the gates with known error rates are the ones in the circuit
+    backends_requirements = dict()
+    for backend_name in backends_gates.keys():
+        backends_requirements[backend_name] = dict()
+
+        gates = backends_gates[backend_name]
+        for gate in gates.keys():
+            if gate in circuit_gates.keys():
+                backend_set = set(gates[gate].keys())
+                circuit_set = set(circuit_gates[gate])
+                if circuit_set.issubset(backend_set):
+                    # print("all qubits matched")
+                    backends_requirements[backend_name][gate] = True
+                else:
+                    # print("not all qubits matched")
+                    backends_requirements[backend_name][gate] = False
+
+    for backend_name in backends_requirements:
+        requirements = backends_requirements[backend_name]
+        # print(requirements)
+        if all(requirement == True for requirement in requirements.values()):
+            # print("all requirements satisfied")
+            selected_backends.append(backend_name)
+
+    return selected_backends
+
 ## == Tests == ##
 
 if __name__ == "__main__":
-
-    # print(">> Defining the .ini file to use...")
-    # filename = "../credentials.ini"
-
-    # config = configuration.load_config(filename)
-
-    # print(">> Connecting to IBM Cloud...")
-    # service = QiskitRuntimeService(channel=config["ibmq.cloud"]["channel"], token=config["ibmq.cloud"]["API_key"], instance=config["ibmq.cloud"]["instance"])
 
     print(">> Information about different backends")
 

@@ -4,6 +4,8 @@
 
 ## == Libraries == ##
 
+import numpy as np
+
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
 from circuits import providers
 from qiskit.providers.fake_provider import FakeNairobiV2
@@ -11,12 +13,30 @@ import pprint
 
 ## == Functions == ##
 
+def transpiled_cx(circuit, q_register, qubit_ctrl, qubit_target):
+
+    circuit.sx(q_register[qubit_ctrl])
+    circuit.rz(-np.pi/2, q_register[qubit_ctrl])
+    circuit.rz(-np.pi/2, q_register[qubit_target])
+    circuit.sx(q_register[qubit_target])
+    circuit.rz(-np.pi, q_register[qubit_target])
+    circuit.ecr(q_register[qubit_target],q_register[qubit_ctrl]) # because of the little endian of Qiskit
+    circuit.rz(-np.pi/2, q_register[qubit_ctrl])
+    circuit.sx(q_register[qubit_ctrl])
+    circuit.rz(np.pi/2, q_register[qubit_ctrl])
+    circuit.rz(np.pi/2, q_register[qubit_target])
+    circuit.sx(q_register[qubit_target])
+    circuit.rz(np.pi/2, q_register[qubit_target])
+
+
 def U_4qubits(circuit, q_register):
     circuit.cx(q_register[0], q_register[1])
+    circuit.cx(q_register[1], q_register[2])
     circuit.cx(q_register[1], q_register[2])
     circuit.cx(q_register[1], q_register[3])
 
     circuit.cx(q_register[3], q_register[1])
+    circuit.cx(q_register[2], q_register[1])
     circuit.cx(q_register[2], q_register[1])
     circuit.cx(q_register[1], q_register[0])
 
@@ -25,11 +45,13 @@ def U_5qubits(circuit, q_register):
 
     circuit.cx(q_register[0], q_register[1])
     circuit.cx(q_register[1], q_register[2])
+    circuit.cx(q_register[1], q_register[2])
     circuit.cx(q_register[1], q_register[3])
     circuit.cx(q_register[3], q_register[4])
 
     circuit.cx(q_register[4], q_register[3])
     circuit.cx(q_register[3], q_register[1])
+    circuit.cx(q_register[2], q_register[1])
     circuit.cx(q_register[2], q_register[1])
     circuit.cx(q_register[1], q_register[0])
 
@@ -45,7 +67,6 @@ def get_existing_circuits():
 
 
 def build_initial_circuit(nb_qubits, chosen_U):
-    #TODO chosen_U = pointeur de fonction (une parmi celles du dessus)
 
     q_register = QuantumRegister(nb_qubits, name='q')
     

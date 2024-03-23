@@ -1,0 +1,32 @@
+global_folding:
+  10000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.05879105787728627
+  100000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.05792917015715537
+  1000000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.05852892876810459
+local_folding:
+  10000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.05543526254982362
+  100000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.05851154161825503
+  1000000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.05910842998145937

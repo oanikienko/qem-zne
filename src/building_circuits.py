@@ -25,11 +25,6 @@ from pathlib import Path
 from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister, Aer, transpile, execute
 from qiskit.visualization import circuit_drawer
 
-# from zne import zne, ZNEStrategy
-# from zne.utils.serialization import EstimatorResultEncoder
-# from zne.noise_amplification import LocalFoldingAmplifier, GlobalFoldingAmplifier
-# from zne.extrapolation import PolynomialExtrapolator
-
 
 ## === Functions === ##
 
@@ -94,9 +89,6 @@ elif common_parameters["nb_qubits"] == 5:
     nb_gates_before_fold = 24
 
 initial_circuit = init.build_initial_circuit(common_parameters["nb_qubits"], common_parameters["circuit"])
-# image = initial_circuit.draw('latex', style="iqp", fold=10)
-# image = circuit_drawer(initial_circuit, style=f"{working_directory}/mystyle.json", output='latex', fold=18)
-# image.save(f"{working_directory}/{storage_directory}/initialCircuit.png")
 fig = circuit_drawer(initial_circuit, style=f"{working_directory}/mystyle.json", output='mpl', fold=nb_gates_before_fold)
 fig.savefig(f"{working_directory}/{storage_directory}/initialCircuit.png")
 
@@ -104,9 +96,6 @@ for experiment in experiments_parameters:
     
     for noise_factor in common_parameters["noise_factors"][1:]:
         folded_circuit = experiment["boost_method"](initial_circuit, noise_factor)
-        # image = folded_circuit.draw('latex', style="iqp", fold=10)
-        # image = circuit_drawer(folded_circuit, style=f"{working_directory}/mystyle.json", output='latex', fold=18)
-        # image.save(f"{working_directory}/{storage_directory}/foldedCircuit-bm_{experiment['boost_method'].__name__}-nf_{noise_factor}.png")
         fig = circuit_drawer(folded_circuit, style=f"{working_directory}/mystyle.json", output='mpl', fold=nb_gates_before_fold)
         fig.savefig(f"{working_directory}/{storage_directory}/foldedCircuit-bm_{experiment['boost_method'].__name__}-nf_{noise_factor}.png")
         

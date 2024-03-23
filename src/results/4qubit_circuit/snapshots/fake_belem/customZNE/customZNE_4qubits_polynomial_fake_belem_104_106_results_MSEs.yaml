@@ -1,0 +1,50 @@
+global_folding:
+  10000:
+    backend: fake_belem
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.10542508957148788
+      2: 0.08468704652197616
+      3: 0.07584888548891633
+      4: 0.07090460932419522
+  100000:
+    backend: fake_belem
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.10873135966396842
+      2: 0.09003033798621354
+      3: 0.08054341071182367
+      4: 0.07574735468157187
+  1000000:
+    backend: fake_belem
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.10753893359907384
+      2: 0.08794838443905797
+      3: 0.07935919147133698
+      4: 0.07464966909203037
+local_folding:
+  10000:
+    backend: fake_belem
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.10702188000860777
+      2: 0.08694723659599134
+      3: 0.07811735106498921
+      4: 0.0732123906171107
+  100000:
+    backend: fake_belem
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.10881320286148
+      2: 0.08885406654864661
+      3: 0.08030640324734331
+      4: 0.07567482063728341
+  1000000:
+    backend: fake_belem
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.10763903481546738
+      2: 0.08790584803088983
+      3: 0.07908038521084833
+      4: 0.07407218771023144

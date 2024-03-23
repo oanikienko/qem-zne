@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 import pprint
 
+from qiskit import transpile
 from qiskit_ibm_runtime import QiskitRuntimeService, Options, Session
 from qiskit.providers.fake_provider import FakeProviderForBackendV2, FakeManilaV2, FakeNairobiV2
 
@@ -21,51 +22,48 @@ from qiskit.providers.fake_provider import FakeProviderForBackendV2, FakeManilaV
 
 ## == Main program == ##
 
+pp = pprint.PrettyPrinter(indent=3, depth=10, sort_dicts=False) 
+
+print(">> Creation of the circuits and the dictionnaries of gates")
+circuit_4qubits = init.build_initial_circuit(4, init.U_4qubits)
+gates_4qubits = {'cx': [(0, 1), (1, 2), (1, 3), (3, 1), (2, 1), (1, 0)]}
+
+
+circuit_5qubits = init.build_initial_circuit(5, init.U_5qubits)
+gates_5qubits = {'cx': [(0, 1), (1, 2), (1, 3), (3,4), (4,3), (3, 1), (2, 1), (1, 0)]}
+
+
+print(circuit_4qubits)
+print(circuit_5qubits)
+
+
+"""
 print(">> Comparison between fake_backends from FakeProviderForBackendV2")
 fake_provider = FakeProviderForBackendV2()
 
 fake_backends = fake_provider.backends()
 
-nb_qubits = 4
-circuit = init.build_initial_circuit(nb_qubits, init.U_4qubits)
-print(circuit)
-# image = circuit.draw('latex')
-# image.save("./initial_circuit_4qubits.png")
-selected_backends_for_circuit_4qubits = providers.select_backends_for_circuit(fake_provider, circuit)
-print(f"Backends on which the circuit U_4qubits can be run: {selected_backends_for_circuit_4qubits}")
+selected_backends_for_circuit_4qubits = providers.select_backends_for_circuit(fake_provider, circuit_4qubits)
+print(f"Fake backends on which the circuit U_4qubits can be run: {selected_backends_for_circuit_4qubits}")
 
-gates = {'cx': [(0, 1), (1, 2), (1, 3), (3, 1), (2, 1), (1, 0), (3,4), (4,3)]}
-selected_backends_by_gates = providers.select_backends_with_gates(fake_provider, gates)
-print(f"Backends on which the gates can be run: {selected_backends_by_gates}")
+selected_backends_by_gates_4qubits = providers.select_backends_with_gates(fake_provider, gates_4qubits)
+print(f"Fake backends on which the gates can be run: {selected_backends_by_gates_4qubits}")
 
-nb_qubits = 5
-circuit = init.build_initial_circuit(nb_qubits, init.U_5qubits)
-print(circuit)
-# image = circuit.draw('latex')
-# image.save("./initial_circuit_5qubits.png")
-selected_backends_for_circuit_5qubits = providers.select_backends_for_circuit(fake_provider, circuit)
-print(f"Backends on which the circuit U_5qubits can be run: {selected_backends_for_circuit_5qubits}")
+selected_backends_for_circuit_5qubits = providers.select_backends_for_circuit(fake_provider, circuit_5qubits)
+print(f"Fake backends on which the circuit U_5qubits can be run: {selected_backends_for_circuit_5qubits}")
 
-# print(selected_backends_for_circuit == selected_backends_by_gates)
+selected_backends_by_gates_5qubits = providers.select_backends_with_gates(fake_provider, gates_5qubits)
+print(f"Fake backends on which the gates can be run: {selected_backends_by_gates_5qubits}")
+
 common_backends = list(set(selected_backends_for_circuit_4qubits) & set(selected_backends_for_circuit_5qubits))
-print(f"Common backends between the two circuits: {common_backends}")
+print(f"Common fake backends between the two circuits: {common_backends}")
+"""
 
+print(">> Comparison between backends from IBM Quantum")
 
-# print(">> Comparison between backends from IBM Cloud")
 working_directory = os.getcwd()
 credentials_configfile = "./credentials.ini"
 credentials = config.load_config(working_directory, credentials_configfile)
-# service = QiskitRuntimeService(
-#                                 channel=credentials["ibm.cloud"]["channel"],
-#                                 token=credentials["ibm.cloud"]["api_key"],
-#                                 instance=credentials["ibm.cloud"]["instance"]
-#                               )
-
-# print(service.backends())
-
-
-
-# print(">> Comparison between backends from IBM Quantum")
 
 service = QiskitRuntimeService(
                                 channel=credentials["ibm.quantum"]["channel"],
@@ -75,10 +73,27 @@ service = QiskitRuntimeService(
 
 print(service.instances())
 print(service.backends())
-print(service.get_backend("ibmq_qasm_simulator"))
+
+gates_4qubits = {'ecr': [(1, 0), (2, 1), (3, 1), (1, 3), (1, 2), (0, 1)]}
+gates_5qubits = {'ecr': [(1, 0), (2, 1), (3, 1), (4, 3), (3, 4), (1, 3), (1, 2), (0, 1)]}
+
+ibm_brisbane = providers.search_backend(service, 'ibm_brisbane')
+brisbane_ecr_error_rates = providers.get_specific_gates_with_error_rates(ibm_brisbane, 'ecr')
+brisbane_ecr_error_rates_set = set(brisbane_ecr_error_rates)
+
+ibm_kyoto = providers.search_backend(service, 'ibm_kyoto')
+kyoto_ecr_error_rates = providers.get_specific_gates_with_error_rates(ibm_kyoto, 'ecr')
+kyoto_ecr_error_rates_set = set(kyoto_ecr_error_rates)
+
+ibm_osaka = providers.search_backend(service, 'ibm_osaka')
+osaka_ecr_error_rates = providers.get_specific_gates_with_error_rates(ibm_osaka, 'ecr')
+osaka_ecr_error_rates_set = set(osaka_ecr_error_rates)
 
 
-# print(providers.search_backend(service, 'ibm_brisbane'))
+backends = [ibm_brisbane, ibm_kyoto, ibm_osaka]
+selected_backends_for_circuit_4qubits = providers.select_real_backends_for_circuit(backends, transpiled_circuit_4qubits)
+print(f"Backends on which the circuit transpiled_U_4qubits can be run: {selected_backends_for_circuit_4qubits}")
 
-# print(providers.get_backends(service, ['ibm_brisbane', 'ibm_kyoto']))
+selected_backends_for_circuit_5qubits = providers.select_real_backends_for_circuit(backends, transpiled_circuit_5qubits)
+print(f"Backends on which the circuit transpiled_U_5qubits can be run: {selected_backends_for_circuit_5qubits}")
 

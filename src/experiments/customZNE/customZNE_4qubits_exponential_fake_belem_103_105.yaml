@@ -1,0 +1,34 @@
+implementation: customZNE 
+circuit: U_4qubits
+nb_qubits: 4
+observable: Z
+noise_factors:
+  - 1
+  - 3
+  - 5
+  - 7
+  - 9
+  - 11
+  - 13
+  - 15
+  - 17
+  - 19
+providers:
+  - name: fake_provider
+    backends: 
+      - fake_belem
+experiments:
+  - boost_method: global_folding
+    nb_shots:
+      - 10000
+      - 100000
+      - 1000000
+    extrapolations:
+      - type: exponential
+  - boost_method: local_folding
+    nb_shots: 
+      - 10000
+      - 100000
+      - 1000000
+    extrapolations:
+      - type: exponential

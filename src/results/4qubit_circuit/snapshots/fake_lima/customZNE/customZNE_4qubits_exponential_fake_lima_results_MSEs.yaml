@@ -1,0 +1,42 @@
+global_folding:
+  5000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.06066958114782906
+  10000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.0595432921681732
+  15000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.06041091965081213
+  20000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.05890689009471254
+local_folding:
+  5000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.06255070699202814
+  10000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.06571233565452261
+  15000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.05508908369678333
+  20000:
+    backend: fake_lima
+    extrapolation_type: exponential extrapolation
+    MSEs:
+      exponential: 0.05862743878897505
