@@ -2,10 +2,6 @@
 # Author: oanikienko
 # Date: 05/12/2023
 
-"""
-This module contains the following functions:
- - 
-"""
 
 ## == Libraries == ##
 

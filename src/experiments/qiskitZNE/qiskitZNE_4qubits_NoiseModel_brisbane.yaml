@@ -1,0 +1,82 @@
+implementation: qiskitZNE 
+circuit: U_4qubits
+nb_qubits: 4
+observable: Z
+noise_factors:
+  - 1
+  - 3
+  - 5
+  - 7
+  - 9
+  - 11
+  - 13
+  - 15
+  - 17
+  - 19
+providers:
+  - name: ibm_quantum_provider
+    run_only_on_simulator: true
+    backends:
+      - ibm_brisbane
+  # - name: fake_provider
+    # backends: 
+      # - fake_belem
+      # - fake_lima
+experiments:
+  - boost_method: local_folding
+    nb_shots: 
+      - 5000
+      - 10000
+      - 15000
+      - 20000
+      # - 100000
+      # - 1000000
+    extrapolations:
+      - type: polynomial
+        parameters: 
+          degrees: 
+            - 1
+          p0: None
+  - boost_method: local_folding
+    nb_shots: 
+      - 5000
+      - 10000
+      - 15000
+      - 20000
+      # - 100000
+      # - 1000000
+    extrapolations:
+      - type: polynomial
+        parameters: 
+          degrees: 
+            - 2
+          p0: None
+  - boost_method: local_folding
+    nb_shots: 
+      - 5000
+      - 10000
+      - 15000
+      - 20000
+      # - 100000
+      # - 1000000
+    extrapolations:
+      - type: polynomial
+        parameters: 
+          degrees: 
+            - 3
+          p0: None
+  - boost_method: local_folding
+    nb_shots: 
+      - 5000
+      - 10000
+      - 15000
+      - 20000
+      # - 100000
+      # - 1000000
+    extrapolations:
+      - type: polynomial
+        parameters: 
+          degrees: 
+            - 4
+          p0: None
+

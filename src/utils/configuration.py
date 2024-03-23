@@ -2,10 +2,6 @@
 # Author: oanikienko
 # Date: 17/11/2023
 
-"""
-This module provides the following functions:
- - load_config(filename): load configuration needed for the Qiskit Runtime Service
-"""
 
 ## == Libraries == ##
 import configparser

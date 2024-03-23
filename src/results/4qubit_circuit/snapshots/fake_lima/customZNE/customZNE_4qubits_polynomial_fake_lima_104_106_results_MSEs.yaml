@@ -1,0 +1,50 @@
+global_folding:
+  10000:
+    backend: fake_lima
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.07214943433550552
+      2: 0.058785007275731195
+      3: 0.05443966846846879
+      4: 0.05370995142792445
+  100000:
+    backend: fake_lima
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.07552003171799232
+      2: 0.06347596372242001
+      3: 0.058416374124866
+      4: 0.05408609296475656
+  1000000:
+    backend: fake_lima
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.07592923241491399
+      2: 0.06388194508950606
+      3: 0.05851905644884406
+      4: 0.05565914167829931
+local_folding:
+  10000:
+    backend: fake_lima
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.07595189591483226
+      2: 0.06197745442074945
+      3: 0.056618443680998595
+      4: 0.05267265901415521
+  100000:
+    backend: fake_lima
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.07595696970288689
+      2: 0.06364968751506862
+      3: 0.05776356220779959
+      4: 0.0543621161064084
+  1000000:
+    backend: fake_lima
+    extrapolation_type: polynomial extrapolation
+    MSEs:
+      1: 0.07586992454897803
+      2: 0.06353758962068684
+      3: 0.058310928268634085
+      4: 0.05555868606931071

@@ -1,0 +1,1080 @@
+circuit: U_4qubits
+nb_qubits: 4
+observable: Z
+optimization_level: 0
+resilience_level: 0
+experiments_results:
+- provider: ibm_quantum_provider
+  backend: ibm_kyoto
+  nb_shots: 10000
+  boost_method: local_folding
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.038409633339744356
+    execution_times:
+      ideal_backend:
+        total_time: 1.780839
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 9.435897
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.3598
+    noisy_variance: 0.87054396
+  - noise_factor: 3
+    fault_rate: 0.1144113328578996
+    execution_times:
+      ideal_backend:
+        total_time: 1.925604
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 9.406227
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.2766
+    noisy_variance: 0.92349244
+  - noise_factor: 5
+    fault_rate: 0.19041303237605472
+    execution_times:
+      ideal_backend:
+        total_time: 1.811043
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 10.437579
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.231
+    noisy_variance: 0.946639
+  - noise_factor: 7
+    fault_rate: 0.26641473189421133
+    execution_times:
+      ideal_backend:
+        total_time: 1.98506
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.303725
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.1748
+    noisy_variance: 0.96944496
+  - noise_factor: 9
+    fault_rate: 0.34241643141236683
+    execution_times:
+      ideal_backend:
+        total_time: 1.999627
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 13.853066
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.1498
+    noisy_variance: 0.97755996
+  - noise_factor: 11
+    fault_rate: 0.4184181309305221
+    execution_times:
+      ideal_backend:
+        total_time: 1.597109
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.612694
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.1128
+    noisy_variance: 0.98727616
+  - noise_factor: 13
+    fault_rate: 0.4944198304486776
+    execution_times:
+      ideal_backend:
+        total_time: 1.905212
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 14.267061
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.069
+    noisy_variance: 0.995239
+  - noise_factor: 15
+    fault_rate: 0.5704215299668298
+    execution_times:
+      ideal_backend:
+        total_time: 1.887929
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.534645
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0452
+    noisy_variance: 0.99795696
+  - noise_factor: 17
+    fault_rate: 0.6464232294849849
+    execution_times:
+      ideal_backend:
+        total_time: 1.955654
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.890566
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0498
+    noisy_variance: 0.99751996
+  - noise_factor: 19
+    fault_rate: 0.7224249290031398
+    execution_times:
+      ideal_backend:
+        total_time: 2.122198
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.395843
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.04
+    noisy_variance: 0.9984
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        optimal_coefs:
+        - 0.3277100769891141
+        - -0.46340985274863483
+        coefs_variances:
+        - 0.3723434161671969
+        - 1.9916778767997896
+      2:
+        optimal_coefs:
+        - 0.38882713330460056
+        - -0.9559805724957986
+        - 0.6536818230351347
+        coefs_variances:
+        - 0.8454202094644377
+        - 32.72036306918989
+        - 54.1177349384536
+      3:
+        optimal_coefs:
+        - 0.3896278551342595
+        - -0.9685271306742022
+        - 0.695067825171337
+        - -0.036467423868835065
+        coefs_variances:
+        - 1.6210571525368311
+        - 223.1536784784241
+        - 2126.167755292693
+        - 1608.8044137758286
+      4:
+        optimal_coefs:
+        - 0.40766185390777404
+        - -1.4093776469059336
+        - 3.258442533210032
+        - -5.266047333944463
+        - 3.449038304016944
+        coefs_variances:
+        - 3.0542085575960485
+        - 1079.5780662272007
+        - 31081.60949823038
+        - 122123.36604656042
+        - 52420.59313313189
+- provider: ibm_quantum_provider
+  backend: ibm_kyoto
+  nb_shots: 100000
+  boost_method: local_folding
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.038409633339744356
+    execution_times:
+      ideal_backend:
+        total_time: 2.199589
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.860275
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.3584
+    noisy_variance: 0.87154944
+  - noise_factor: 3
+    fault_rate: 0.1144113328578996
+    execution_times:
+      ideal_backend:
+        total_time: 1.900374
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.396524
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.28286
+    noisy_variance: 0.9199902204
+  - noise_factor: 5
+    fault_rate: 0.19041303237605472
+    execution_times:
+      ideal_backend:
+        total_time: 2.123788
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.661772
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.22258
+    noisy_variance: 0.9504581436
+  - noise_factor: 7
+    fault_rate: 0.26641473189421133
+    execution_times:
+      ideal_backend:
+        total_time: 1.959048
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.80733
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.18194
+    noisy_variance: 0.9668978364
+  - noise_factor: 9
+    fault_rate: 0.34241643141236683
+    execution_times:
+      ideal_backend:
+        total_time: 1.893084
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 10.393728
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.14142
+    noisy_variance: 0.9800003836
+  - noise_factor: 11
+    fault_rate: 0.4184181309305221
+    execution_times:
+      ideal_backend:
+        total_time: 2.246366
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 10.839194
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.1066
+    noisy_variance: 0.98863644
+  - noise_factor: 13
+    fault_rate: 0.4944198304486776
+    execution_times:
+      ideal_backend:
+        total_time: 2.277004
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 12.114189
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.08644
+    noisy_variance: 0.9925281264
+  - noise_factor: 15
+    fault_rate: 0.5704215299668298
+    execution_times:
+      ideal_backend:
+        total_time: 2.092439
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 12.17652
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.06376
+    noisy_variance: 0.9959346624
+  - noise_factor: 17
+    fault_rate: 0.6464232294849849
+    execution_times:
+      ideal_backend:
+        total_time: 1.716442
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 12.366334
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.05508
+    noisy_variance: 0.9969661936
+  - noise_factor: 19
+    fault_rate: 0.7224249290031398
+    execution_times:
+      ideal_backend:
+        total_time: 1.902502
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.533165
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0493
+    noisy_variance: 0.99756951
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        optimal_coefs:
+        - 0.32400801934091955
+        - -0.4431981276526532
+        coefs_variances:
+        - 0.3723105079666112
+        - 1.9905827645357592
+      2:
+        optimal_coefs:
+        - 0.38797652168501634
+        - -0.9587601585280314
+        - 0.6841656624956858
+        coefs_variances:
+        - 0.8454568563655569
+        - 32.72500033078214
+        - 54.123476095903186
+      3:
+        optimal_coefs:
+        - 0.39648962453872166
+        - -1.0920975979239402
+        - 1.1238865675573986
+        - -0.38741056389213935
+        coefs_variances:
+        - 1.6220794123590205
+        - 223.24405780199925
+        - 2126.1171148842236
+        - 1608.337207011462
+      4:
+        optimal_coefs:
+        - 0.40356202812947195
+        - -1.2648926613470475
+        - 2.1284449974277333
+        - -2.43658590268206
+        - 1.3513638768573204
+        coefs_variances:
+        - 3.057673494116634
+        - 1080.203145543389
+        - 31089.39889521615
+        - 122127.3519405688
+        - 52413.35036808821
+- provider: ibm_quantum_provider
+  backend: ibm_kyoto
+  nb_shots: 1000000
+  boost_method: local_folding
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.038409633339744356
+    execution_times:
+      ideal_backend:
+        total_time: 4.727712
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 14.321736
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.35385
+    noisy_variance: 0.8747901775
+  - noise_factor: 3
+    fault_rate: 0.1144113328578996
+    execution_times:
+      ideal_backend:
+        total_time: 4.771705
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 14.082681
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.287386
+    noisy_variance: 0.917409287004
+  - noise_factor: 5
+    fault_rate: 0.19041303237605472
+    execution_times:
+      ideal_backend:
+        total_time: 4.8686
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 12.82962
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.224492
+    noisy_variance: 0.949603341936
+  - noise_factor: 7
+    fault_rate: 0.26641473189421133
+    execution_times:
+      ideal_backend:
+        total_time: 4.247774
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 14.002312
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.176266
+    noisy_variance: 0.968930297244
+  - noise_factor: 9
+    fault_rate: 0.34241643141236683
+    execution_times:
+      ideal_backend:
+        total_time: 4.580609
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 14.397775
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.130464
+    noisy_variance: 0.982979144704
+  - noise_factor: 11
+    fault_rate: 0.4184181309305221
+    execution_times:
+      ideal_backend:
+        total_time: 4.166152
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.775632
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.10278
+    noisy_variance: 0.9894362716
+  - noise_factor: 13
+    fault_rate: 0.4944198304486776
+    execution_times:
+      ideal_backend:
+        total_time: 4.122063
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.685009
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.11063
+    noisy_variance: 0.9877610031
+  - noise_factor: 15
+    fault_rate: 0.5704215299668298
+    execution_times:
+      ideal_backend:
+        total_time: 4.803702
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 13.111902
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.062372
+    noisy_variance: 0.996109733616
+  - noise_factor: 17
+    fault_rate: 0.6464232294849849
+    execution_times:
+      ideal_backend:
+        total_time: 4.667084
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 16.14409
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.050626
+    noisy_variance: 0.997437008124
+  - noise_factor: 19
+    fault_rate: 0.7224249290031398
+    execution_times:
+      ideal_backend:
+        total_time: 3.696012
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 15.384976
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.060778
+    noisy_variance: 0.996306034716
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        optimal_coefs:
+        - 0.32027217382120465
+        - -0.4303280925018026
+        coefs_variances:
+        - 0.37259473449494745
+        - 1.9909089714925574
+      2:
+        optimal_coefs:
+        - 0.38693257486107957
+        - -0.9673352354866978
+        - 0.7124783367734986
+        coefs_variances:
+        - 0.8468053421138346
+        - 32.76572884721895
+        - 54.1724798128368
+      3:
+        optimal_coefs:
+        - 0.3961791477684935
+        - -1.1119785017438055
+        - 1.1892207597359064
+        - -0.4198988193381796
+        coefs_variances:
+        - 1.6267496082905684
+        - 223.61850947879745
+        - 2127.5085071880194
+        - 1608.3902413367173
+      4:
+        optimal_coefs:
+        - 0.40053815719992225
+        - -1.2183781997748018
+        - 1.8077087361940487
+        - -1.6815007222399778
+        - 0.8319690535872118
+        coefs_variances:
+        - 3.065863939278983
+        - 1081.050235897487
+        - 31099.68338234305
+        - 122157.27889010079
+        - 52424.33078042236
+- provider: ibm_quantum_provider
+  backend: ibm_kyoto
+  nb_shots: 10000
+  boost_method: global_folding
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.038409633339744356
+    execution_times:
+      ideal_backend:
+        total_time: 1.978457
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 10.403181
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.3578
+    noisy_variance: 0.87197916
+  - noise_factor: 3
+    fault_rate: 0.11441133285789959
+    execution_times:
+      ideal_backend:
+        total_time: 1.910056
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 10.843656
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.2506
+    noisy_variance: 0.93719964
+  - noise_factor: 5
+    fault_rate: 0.19041303237605484
+    execution_times:
+      ideal_backend:
+        total_time: 1.964251
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.581674
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.1444
+    noisy_variance: 0.97914864
+  - noise_factor: 7
+    fault_rate: 0.2664147318942108
+    execution_times:
+      ideal_backend:
+        total_time: 2.180157
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.58821
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.1198
+    noisy_variance: 0.98564796
+  - noise_factor: 9
+    fault_rate: 0.34241643141236605
+    execution_times:
+      ideal_backend:
+        total_time: 1.951371
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.643243
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0676
+    noisy_variance: 0.99543024
+  - noise_factor: 11
+    fault_rate: 0.4184181309305213
+    execution_times:
+      ideal_backend:
+        total_time: 1.503112
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 10.701708
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0378
+    noisy_variance: 0.99857116
+  - noise_factor: 13
+    fault_rate: 0.4944198304486766
+    execution_times:
+      ideal_backend:
+        total_time: 1.92387
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 12.281183
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0412
+    noisy_variance: 0.99830256
+  - noise_factor: 15
+    fault_rate: 0.5704215299668293
+    execution_times:
+      ideal_backend:
+        total_time: 2.047854
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.232569
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.013
+    noisy_variance: 0.999831
+  - noise_factor: 17
+    fault_rate: 0.6464232294849838
+    execution_times:
+      ideal_backend:
+        total_time: 1.842879
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.869224
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0108
+    noisy_variance: 0.99988336
+  - noise_factor: 19
+    fault_rate: 0.7224249290031385
+    execution_times:
+      ideal_backend:
+        total_time: 2.005292
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 9.990835
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.0288
+    noisy_variance: 0.99917056
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        optimal_coefs:
+        - 0.2810833525391551
+        - -0.45364473163333874
+        coefs_variances:
+        - 0.3766811992249458
+        - 2.0038794861503675
+      2:
+        optimal_coefs:
+        - 0.3908738718259623
+        - -1.3406417400075201
+        - 1.1772711505490847
+        coefs_variances:
+        - 0.8504128816893364
+        - 32.92441845462196
+        - 54.469795640182504
+      3:
+        optimal_coefs:
+        - 0.42079993326175896
+        - -1.8113375075904445
+        - 2.729783454376709
+        - -1.367427218824144
+        coefs_variances:
+        - 1.627776688059333
+        - 225.23612243727268
+        - 2146.6313227781106
+        - 1623.056119955908
+      4:
+        optimal_coefs:
+        - 0.4412386209217622
+        - -2.312159118022729
+        - 5.64137320521837
+        - -7.304423827452902
+        - 3.913664166904029
+        coefs_variances:
+        - 3.072070514056896
+        - 1092.4287581663696
+        - 31456.22581800178
+        - 123489.19306031225
+        - 52956.16851723295
+- provider: ibm_quantum_provider
+  backend: ibm_kyoto
+  nb_shots: 100000
+  boost_method: global_folding
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.038409633339744356
+    execution_times:
+      ideal_backend:
+        total_time: 1.947388
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 9.50194
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.35614
+    noisy_variance: 0.8731643004
+  - noise_factor: 3
+    fault_rate: 0.11441133285789959
+    execution_times:
+      ideal_backend:
+        total_time: 1.925985
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.602681
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.22452
+    noisy_variance: 0.9495907696
+  - noise_factor: 5
+    fault_rate: 0.19041303237605484
+    execution_times:
+      ideal_backend:
+        total_time: 2.233369
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.695355
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.13436
+    noisy_variance: 0.9819473904
+  - noise_factor: 7
+    fault_rate: 0.2664147318942108
+    execution_times:
+      ideal_backend:
+        total_time: 2.340181
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.75855
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.07532
+    noisy_variance: 0.9943268976
+  - noise_factor: 9
+    fault_rate: 0.34241643141236605
+    execution_times:
+      ideal_backend:
+        total_time: 2.21903
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.721696
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.05368
+    noisy_variance: 0.9971184576
+  - noise_factor: 11
+    fault_rate: 0.4184181309305213
+    execution_times:
+      ideal_backend:
+        total_time: 2.188434
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 10.752248
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.03558
+    noisy_variance: 0.9987340636
+  - noise_factor: 13
+    fault_rate: 0.4944198304486766
+    execution_times:
+      ideal_backend:
+        total_time: 2.174897
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.968515
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.02226
+    noisy_variance: 0.9995044924
+  - noise_factor: 15
+    fault_rate: 0.5704215299668293
+    execution_times:
+      ideal_backend:
+        total_time: 2.171633
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 10.127136
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.01688
+    noisy_variance: 0.9997150656
+  - noise_factor: 17
+    fault_rate: 0.6464232294849838
+    execution_times:
+      ideal_backend:
+        total_time: 2.241536
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 12.216789
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.00504
+    noisy_variance: 0.9999745984
+  - noise_factor: 19
+    fault_rate: 0.7224249290031385
+    execution_times:
+      ideal_backend:
+        total_time: 2.150185
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 13.0389
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.00762
+    noisy_variance: 0.9999419356
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        optimal_coefs:
+        - 0.2639014599861794
+        - -0.4449247393479883
+        coefs_variances:
+        - 0.3785445625960589
+        - 2.0096167080018272
+      2:
+        optimal_coefs:
+        - 0.37800718688819646
+        - -1.366597638116716
+        - 1.2231386107720958
+        coefs_variances:
+        - 0.8534770897054835
+        - 32.995984972932106
+        - 54.57181447577233
+      3:
+        optimal_coefs:
+        - 0.4323545750800142
+        - -2.22225200356759
+        - 4.045273812203588
+        - -2.4854302225749914
+        coefs_variances:
+        - 1.6313435523030966
+        - 225.81258279860285
+        - 2152.0782507717267
+        - 1626.8623842359907
+      4:
+        optimal_coefs:
+        - 0.4509869339533085
+        - -2.6793670761572743
+        - 6.7027296936574094
+        - -7.903467295902095
+        - 3.5710935142895486
+        coefs_variances:
+        - 3.0774575399360367
+        - 1096.2107941931074
+        - 31569.1253988083
+        - 123905.60138869699
+        - 53121.398490614745
+- provider: ibm_quantum_provider
+  backend: ibm_kyoto
+  nb_shots: 1000000
+  boost_method: global_folding
+  circuit_results:
+  - noise_factor: 1
+    fault_rate: 0.038409633339744356
+    execution_times:
+      ideal_backend:
+        total_time: 4.876501
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 14.258161
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.341774
+    noisy_variance: 0.883190532924
+  - noise_factor: 3
+    fault_rate: 0.11441133285789959
+    execution_times:
+      ideal_backend:
+        total_time: 4.123078
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 14.665131
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.24529
+    noisy_variance: 0.9398328159
+  - noise_factor: 5
+    fault_rate: 0.19041303237605484
+    execution_times:
+      ideal_backend:
+        total_time: 5.052587
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 13.569336
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.16195
+    noisy_variance: 0.9737721975
+  - noise_factor: 7
+    fault_rate: 0.2664147318942108
+    execution_times:
+      ideal_backend:
+        total_time: 4.139857
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 11.493822
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.085796
+    noisy_variance: 0.992639046384
+  - noise_factor: 9
+    fault_rate: 0.34241643141236605
+    execution_times:
+      ideal_backend:
+        total_time: 4.563348
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 14.587634
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.056796
+    noisy_variance: 0.996774214384
+  - noise_factor: 11
+    fault_rate: 0.4184181309305213
+    execution_times:
+      ideal_backend:
+        total_time: 4.778144
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 15.041691
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.033688
+    noisy_variance: 0.998865118656
+  - noise_factor: 13
+    fault_rate: 0.4944198304486766
+    execution_times:
+      ideal_backend:
+        total_time: 4.193491
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 14.902584
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.016178
+    noisy_variance: 0.999738272316
+  - noise_factor: 15
+    fault_rate: 0.5704215299668293
+    execution_times:
+      ideal_backend:
+        total_time: 3.773637
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 15.113669
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.01669
+    noisy_variance: 0.9997214439
+  - noise_factor: 17
+    fault_rate: 0.6464232294849838
+    execution_times:
+      ideal_backend:
+        total_time: 4.181031
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 12.224376
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.012144
+    noisy_variance: 0.999852523264
+  - noise_factor: 19
+    fault_rate: 0.7224249290031385
+    execution_times:
+      ideal_backend:
+        total_time: 4.804292
+        quantum_time: 0.0
+      noisy_backend:
+        total_time: 15.257418
+        quantum_time: 0.0
+    ideal_expectation_value: 1.0
+    ideal_variance: 0.0
+    noisy_expectation_value: 0.006264
+    noisy_variance: 0.999960762304
+  extrapolations_results:
+  - type: polynomial
+    p0: null
+    degrees:
+      1:
+        optimal_coefs:
+        - 0.27234637417079666
+        - -0.45611693270286335
+        coefs_variances:
+        - 0.37866448957214005
+        - 2.011299662071985
+      2:
+        optimal_coefs:
+        - 0.38069027750631856
+        - -1.3292779808612323
+        - 1.1579542208606017
+        coefs_variances:
+        - 0.8576614866686427
+        - 33.12219697045098
+        - 54.7150260259283
+      3:
+        optimal_coefs:
+        - 0.4125323677586437
+        - -1.8285013026350456
+        - 2.802865022631355
+        - -1.4481033058784352
+        coefs_variances:
+        - 1.6447044962114616
+        - 226.57946904877178
+        - 2155.0087491420054
+        - 1627.7751748284097
+      4:
+        optimal_coefs:
+        - 0.4008396784912754
+        - -1.5426250607075795
+        - 1.1418193679591742
+        - 1.9381080878651564
+        - -2.231898921445745
+        coefs_variances:
+        - 3.1005153195748285
+        - 1096.8055742258944
+        - 31534.1464886081
+        - 123724.49810033407
+        - 53042.612461841876

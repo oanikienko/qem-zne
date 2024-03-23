@@ -9,4 +9,4 @@ pyvenv.cfg
 *.ini
 *.pyc
 *.vim
-!src/parameters/*.ini
+!src/global_parameters.ini
