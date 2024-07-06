@@ -6,8 +6,6 @@
 
 from utils import yaml_io 
 from utils import configuration as config
-from circuits import initial_circuits as init
-from circuits import noise_boosting
 from customZNE.extrapolation.polynomial_extrapolation import polynomial_from_coefficients
 from customZNE.extrapolation.exponential_extrapolation import exponential_from_coefficients
 
@@ -157,32 +155,6 @@ def define_figure_name(working_directory, storage_directory, zne_information, ex
     return fig_name
 
 
-def build_circuits(experiments_data, experiment, results):
-
-    circuits = []
-
-    # Initial circuit
-    circuits_functions = init.get_existing_circuits()
-    try:
-        common_parameters["circuit"] = circuits_functions[experiments_configuration["circuit"]]
-    except KeyError:
-        print("Error: the circuit {0} does not exist.".format(experiments_configuration["circuit"]))
-        sys.exit()
-
-    circuits.append(init.build_initial_circuit(experiments_data["nb_qubits"], circuits_functions[experiments_data["circuit"]]))
-    
-    # Folded circuits
-    boosting_methods = noise_boosting.get_existing_boosting_methods()
-    try:
-        experiment["boost_method"] = boosting_methods[experiments_configuration["experiments"][i]["boost_method"]]
-    except KeyError:
-        print("Error: the boosting method {0} does not exist.".format(experiments_configuration["experiments"][i]["boost_method"]))
-        sys.exit()
-
-    for noise_factor in results["noise_factors"][1:]:
-        circuits.append(boosting_methods[experiment["boost_method"]](circuits[0], noise_factor))
-
-    return circuits
 
 
 def customZNE_plot_results(zne_information, experiments_data):
