@@ -6,8 +6,6 @@
 
 from utils import yaml_io 
 from utils import configuration as config
-from circuits import initial_circuits as init
-from circuits import noise_boosting
 from customZNE.extrapolation.polynomial_extrapolation import polynomial_from_coefficients
 from customZNE.extrapolation.exponential_extrapolation import exponential_from_coefficients
 
